@@ -16,4 +16,20 @@ public class Role {
     @NotNull
     @ColumnInfo(name = "RoleName")
     private int RoleName;
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public int getRoleName() {
+        return RoleName;
+    }
+
+    public void setRoleName(int roleName) {
+        RoleName = roleName;
+    }
 }

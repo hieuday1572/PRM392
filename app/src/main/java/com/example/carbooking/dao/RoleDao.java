@@ -1,5 +1,6 @@
 package com.example.carbooking.dao;
 
+import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -8,7 +9,7 @@ import androidx.room.Update;
 import com.example.carbooking.Entity.Role;
 
 import java.util.List;
-
+@Dao
 public interface RoleDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert (Role role);

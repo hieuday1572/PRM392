@@ -5,8 +5,10 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import com.example.carbooking.Entity.Category;
+import com.example.carbooking.Entity.Converters;
 import com.example.carbooking.Entity.Order;
 import com.example.carbooking.Entity.Role;
 import com.example.carbooking.Entity.Status;
@@ -15,6 +17,7 @@ import com.example.carbooking.Entity.User;
 import com.example.carbooking.Entity.Vehicle;
 
 @Database(entities = {Category.class, Order.class, Role.class, Status.class, Tour.class, User.class, Vehicle.class}, version = 1)
+@TypeConverters({Converters.class})
 public abstract class PRM392RoomDatabase extends RoomDatabase {
     private static final String DB_NAME = "PRM392Database";
     public abstract CategoryDao categoryDao();

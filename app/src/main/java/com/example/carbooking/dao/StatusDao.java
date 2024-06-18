@@ -1,5 +1,6 @@
 package com.example.carbooking.dao;
 
+import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -9,7 +10,7 @@ import com.example.carbooking.Entity.Role;
 import com.example.carbooking.Entity.Status;
 
 import java.util.List;
-
+@Dao
 public interface StatusDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert (Status status);

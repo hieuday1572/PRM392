@@ -5,6 +5,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -38,4 +39,61 @@ public class Order {
     @NotNull
     @ColumnInfo(name = "orderDate")
     private Date orderDate;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getTourId() {
+        return tourId;
+    }
+
+    public void setTourId(int tourId) {
+        this.tourId = tourId;
+    }
+
+    public int getNumberOfPerson() {
+        return numberOfPerson;
+    }
+
+    public void setNumberOfPerson(int numberOfPerson) {
+        this.numberOfPerson = numberOfPerson;
+    }
+
+    public int getDepartureDay() {
+        return departureDay;
+    }
+
+    public void setDepartureDay(int departureDay) {
+        this.departureDay = departureDay;
+    }
+
+    public double getTotalFee() {
+        return totalFee;
+    }
+
+    public void setTotalFee(double totalFee) {
+        this.totalFee = totalFee;
+    }
+
+    public boolean isStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(boolean statusId) {
+        this.statusId = statusId;
+    }
+
+    @NotNull
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(@NotNull Date orderDate) {
+        this.orderDate = orderDate;
+    }
 }

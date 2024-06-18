@@ -16,4 +16,20 @@ public class Category {
     @ColumnInfo(name = "categoryName")
     private String categoryName;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @NotNull
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(@NotNull String categoryName) {
+        this.categoryName = categoryName;
+    }
 }

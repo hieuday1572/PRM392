@@ -63,5 +63,132 @@ public class Tour {
     @ColumnInfo(name = "contactNumber")
     private String contactNumber;
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @NotNull
+    public String getTile() {
+        return tile;
+    }
+
+    public void setTile(@NotNull String tile) {
+        this.tile = tile;
+    }
+
+    @NotNull
+    public String getLocationFrom() {
+        return locationFrom;
+    }
+
+    public void setLocationFrom(@NotNull String locationFrom) {
+        this.locationFrom = locationFrom;
+    }
+
+    @NotNull
+    public String getLocationTo() {
+        return locationTo;
+    }
+
+    public void setLocationTo(@NotNull String locationTo) {
+        this.locationTo = locationTo;
+    }
+
+    @NotNull
+    public String getTourTime() {
+        return tourTime;
+    }
+
+    public void setTourTime(@NotNull String tourTime) {
+        this.tourTime = tourTime;
+    }
+
+    @NotNull
+    public Date getDateNumber() {
+        return dateNumber;
+    }
+
+    public void setDateNumber(@NotNull Date dateNumber) {
+        this.dateNumber = dateNumber;
+    }
+
+    @NotNull
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(@NotNull String description) {
+        this.description = description;
+    }
+
+    @NotNull
+    public String getTourSchdule() {
+        return tourSchdule;
+    }
+
+    public void setTourSchdule(@NotNull String tourSchdule) {
+        this.tourSchdule = tourSchdule;
+    }
+
+    public double getPricePerPerson() {
+        return pricePerPerson;
+    }
+
+    public void setPricePerPerson(double pricePerPerson) {
+        this.pricePerPerson = pricePerPerson;
+    }
+
+    @NotNull
+    public String getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(@NotNull String vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public int getVotedNumber() {
+        return votedNumber;
+    }
+
+    public void setVotedNumber(int votedNumber) {
+        this.votedNumber = votedNumber;
+    }
+
+    public int getVoteScore() {
+        return voteScore;
+    }
+
+    public void setVoteScore(int voteScore) {
+        this.voteScore = voteScore;
+    }
+
+    public boolean isAvaliable() {
+        return isAvaliable;
+    }
+
+    public void setAvaliable(boolean avaliable) {
+        isAvaliable = avaliable;
+    }
+
+    @NotNull
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(@NotNull String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
 }
