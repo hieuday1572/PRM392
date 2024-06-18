@@ -17,7 +17,7 @@
       <SelectionState runConfigName="AddTourActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="Test_1">
+      <SelectionState runConfigName="ListTourActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

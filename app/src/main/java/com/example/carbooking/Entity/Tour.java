@@ -33,7 +33,7 @@ public class Tour {
     private String tourTime;
     @NotNull
     @ColumnInfo(name = "dateNumber")
-    private Date dateNumber;
+    private int dateNumber;
     @NotNull
     @ColumnInfo(name = "description")
     private String description;
@@ -45,7 +45,7 @@ public class Tour {
     private double pricePerPerson;
     @NotNull
     @ColumnInfo(name = "vehicle")
-    private String vehicle;
+    private int vehicle;
     @NotNull
     @ColumnInfo(name = "categoryId")
     private int categoryId;
@@ -62,6 +62,24 @@ public class Tour {
     @NotNull
     @ColumnInfo(name = "contactNumber")
     private String contactNumber;
+
+
+    public Tour( @NotNull String tile, @NotNull String locationFrom, @NotNull String locationTo, @NotNull String tourTime, int dateNumber, @NotNull String description, @NotNull String tourSchdule, double pricePerPerson, int vehicle, int categoryId, int votedNumber, int voteScore, boolean isAvaliable, @NotNull String contactNumber) {
+        this.tile = tile;
+        this.locationFrom = locationFrom;
+        this.locationTo = locationTo;
+        this.tourTime = tourTime;
+        this.dateNumber = dateNumber;
+        this.description = description;
+        this.tourSchdule = tourSchdule;
+        this.pricePerPerson = pricePerPerson;
+        this.vehicle = vehicle;
+        this.categoryId = categoryId;
+        this.votedNumber = votedNumber;
+        this.voteScore = voteScore;
+        this.isAvaliable = isAvaliable;
+        this.contactNumber = contactNumber;
+    }
 
     public int getId() {
         return id;
@@ -108,11 +126,11 @@ public class Tour {
     }
 
     @NotNull
-    public Date getDateNumber() {
+    public int getDateNumber() {
         return dateNumber;
     }
 
-    public void setDateNumber(@NotNull Date dateNumber) {
+    public void setDateNumber(@NotNull int dateNumber) {
         this.dateNumber = dateNumber;
     }
 
@@ -143,11 +161,11 @@ public class Tour {
     }
 
     @NotNull
-    public String getVehicle() {
+    public int getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(@NotNull String vehicle) {
+    public void setVehicle(@NotNull int vehicle) {
         this.vehicle = vehicle;
     }
 

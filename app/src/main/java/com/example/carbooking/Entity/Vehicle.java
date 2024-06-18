@@ -32,4 +32,8 @@ public class Vehicle {
     public void setVehicleName(@NotNull String vehicleName) {
         this.vehicleName = vehicleName;
     }
+    @Override
+    public String toString() {
+        return vehicleName; // This makes the ArrayAdapter display the vehicle name
+    }
 }

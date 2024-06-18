@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="15dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="15dp"
+   >
+    <TextView
+        android:id="@+id/tv_tour_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:layout_weight="2"
+        />
+    <TextView
+        android:id="@+id/tv_location_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location From"
+        android:layout_weight="2"
+        />
+    <TextView
+        android:id="@+id/tv_location_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location To"
+        android:layout_weight="2"
+        />
+    <TextView
+        android:id="@+id/tv_tour_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tour Time"
+        android:layout_weight="2"
+        />
+    <TextView
+        android:id="@+id/tv_price_per_person"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price/Person"
+        android:layout_weight="1"
+        />
+</LinearLayout>

@@ -29,5 +29,5 @@ public class CategoryRepository {
         return  categoryDao.selectAll();
     }
 
-    public  void deleteById(int categoryId){ categoryDao.delete(categoryId);}
+    public void deleteById(int categoryId){ categoryDao.delete(categoryId);}
 }

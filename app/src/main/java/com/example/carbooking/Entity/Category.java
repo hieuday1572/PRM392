@@ -32,4 +32,7 @@ public class Category {
     public void setCategoryName(@NotNull String categoryName) {
         this.categoryName = categoryName;
     }
+    public String toString() {
+        return categoryName; // This makes the ArrayAdapter display the vehicle name
+    }
 }

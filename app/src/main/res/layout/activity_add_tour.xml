@@ -20,8 +20,10 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="30dp">
         <ImageButton
+            android:id="@+id/back_homepage_admin"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/icon_before"
@@ -135,6 +137,22 @@
                     android:layout_marginLeft="8dp"
                     android:hint="Enter number date"
                     android:textSize="13dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tour Schedule: "
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edt_tour_schedule"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:hint="Enter tour schedule"
+                    android:textSize="13dp" />
+
 
                 <Button
                     android:id="@+id/btn_addTour"

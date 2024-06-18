@@ -1,5 +1,6 @@
 package com.example.carbooking.admin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,7 +61,8 @@ public class HomePageAdminActivity extends AppCompatActivity {
                 int itemId = menuItem.getItemId();
 
                 if(itemId == R.id.navAddTour){
-                    Toast.makeText(HomePageAdminActivity.this, "Add clicked", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePageAdminActivity.this, AddTourActivity.class);
+                    startActivity(intent);
                 }
                 if(itemId == R.id.navEditTour){
                     Toast.makeText(HomePageAdminActivity.this, "Edit clicked", Toast.LENGTH_SHORT).show();
