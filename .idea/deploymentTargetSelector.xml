@@ -18,6 +18,11 @@
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="ListTourActivity">
+         <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="EditUser">
+         <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

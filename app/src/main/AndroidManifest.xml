@@ -31,6 +31,9 @@
             android:name=".LoginPage"
             android:exported="true" />
         <activity
+            android:name=".EditUser"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
