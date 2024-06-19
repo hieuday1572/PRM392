@@ -36,13 +36,14 @@ public class User {
     @ColumnInfo(name = "Address")
     private String Address;
 
-    @Nullable
+
     @ColumnInfo(name = "RoleId")
     private int Role_id;
 
-    @Nullable
+
     @ColumnInfo(name = "IsLocked")
     private boolean isLocked;
+    @Nullable
     @ColumnInfo(name = "Avatar")
     private String avatar;
 
@@ -54,41 +55,48 @@ public class User {
         this.id = id;
     }
 
-
-    @androidx.annotation.Nullable
+    @Nullable
     public String getUserName() {
         return userName;
     }
 
-    public void setUserName(@NotNull String userName) {
+    public void setUserName(@Nullable String userName) {
         this.userName = userName;
     }
 
+    @Nullable
+    public String getPassword() {
+        return password;
+    }
 
-    @androidx.annotation.Nullable
+    public void setPassword(@Nullable String password) {
+        this.password = password;
+    }
+
+    @Nullable
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(@NotNull String email) {
+    public void setEmail(@Nullable String email) {
         this.email = email;
     }
 
-    @androidx.annotation.Nullable
+    @Nullable
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(@NotNull String phoneNumber) {
+    public void setPhoneNumber(@Nullable String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    @androidx.annotation.Nullable
+    @Nullable
     public String getAddress() {
         return Address;
     }
 
-    public void setAddress(@NotNull String address) {
+    public void setAddress(@Nullable String address) {
         Address = address;
     }
 
@@ -108,20 +116,12 @@ public class User {
         isLocked = locked;
     }
 
+    @Nullable
     public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(@Nullable String avatar) {
         this.avatar = avatar;
-    }
-
-    @androidx.annotation.Nullable
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(@NotNull String password) {
-        this.password = password;
     }
 }
