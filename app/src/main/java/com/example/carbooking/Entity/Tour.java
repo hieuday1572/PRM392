@@ -11,8 +11,8 @@ import java.util.Date;
 
 @Entity(tableName = "Tour",
         foreignKeys = {
-                @ForeignKey(entity = Category.class, parentColumns = "id", childColumns = "id"),
-                @ForeignKey(entity = Vehicle.class, parentColumns = "id", childColumns = "id")
+                @ForeignKey(entity = Category.class, parentColumns = "id", childColumns = "categoryId"),
+                @ForeignKey(entity = Vehicle.class, parentColumns = "id", childColumns = "vehicle")
         })
 public class Tour {
     @NotNull

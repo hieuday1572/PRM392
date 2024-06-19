@@ -12,9 +12,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Date;
 
 @Entity(tableName = "Order", foreignKeys ={
-        @ForeignKey(entity =  Status.class, parentColumns = "id", childColumns = "id"),
-        @ForeignKey(entity = Tour.class, parentColumns = "id", childColumns = "id"),
-        @ForeignKey(entity = User.class, parentColumns = "id", childColumns = "id")
+        @ForeignKey(entity =  Status.class, parentColumns = "id", childColumns = "statusId"),
+        @ForeignKey(entity = Tour.class, parentColumns = "id", childColumns = "tourId"),
+        @ForeignKey(entity = User.class, parentColumns = "id", childColumns = "userId")
             })
 public class Order {
     @PrimaryKey(autoGenerate = true)
@@ -24,6 +24,9 @@ public class Order {
     @NotNull
     @ColumnInfo(name = "tourId")
     private  int tourId;
+    @NotNull
+    @ColumnInfo(name = "userId")
+    private  int userId;
     @NotNull
     @ColumnInfo(name = "numberOfPerson")
     private int numberOfPerson;
@@ -39,6 +42,10 @@ public class Order {
     @NotNull
     @ColumnInfo(name = "orderDate")
     private Date orderDate;
+
+    @NotNull
+    @ColumnInfo(name = "endDate")
+    private Date endDate;
 
     public int getId() {
         return id;
@@ -95,5 +102,22 @@ public class Order {
 
     public void setOrderDate(@NotNull Date orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @NotNull
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(@NotNull Date endDate) {
+        this.endDate = endDate;
     }
 }
