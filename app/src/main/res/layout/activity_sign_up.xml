@@ -36,25 +36,6 @@
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/name"
-            style="@style/LoginTextInputLayoutStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Full Name"
-            android:textColorHint="@color/black"
-            app:hintTextColor="@color/black"
-            app:startIconDrawable="@drawable/ic_name"
-            app:startIconTint="@color/black">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="@color/black"
-                android:paddingStart="48dp"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/email"
             style="@style/LoginTextInputLayoutStyle"
             android:layout_width="match_parent"
@@ -64,6 +45,25 @@
             android:textColorHint="@color/black"
             app:hintTextColor="@color/black"
             app:startIconDrawable="@drawable/ic_email"
+            app:startIconTint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black"
+                android:paddingStart="48dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/address"
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Address"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/black"
+            app:startIconDrawable="@drawable/ic_name"
             app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText

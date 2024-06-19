@@ -1,5 +1,7 @@
 package com.example.carbooking;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,7 +12,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.carbooking.Entity.Role;
 import com.example.carbooking.Entity.User;
+import com.example.carbooking.repository.RoleRepository;
 import com.example.carbooking.repository.UserRepository;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -19,9 +23,10 @@ import java.util.List;
 public class SignUp extends AppCompatActivity {
     TextView txtSignIn;
     TextView txtTitle, txtSub;
-    TextInputLayout inpFullname, inpEmail, inpPhone, inpUser, inpPass, inpRePass;
+    TextInputLayout inpEmail, inpPhone, inpUser, inpPass, inpRePass, inpAddress;
     Button btnSignUp, btnReset;
-
+    private UserRepository repo = null;
+    private RoleRepository repo_role = null;
     SharedPreferences preferences;
 
     private static final String KEY_NAME = "name";
@@ -39,10 +44,7 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
-
         txtTitle = findViewById(R.id.tv_title_regis);
-        inpFullname = findViewById(R.id.name);
         inpEmail = findViewById(R.id.email);
         inpPhone = findViewById(R.id.phone);
         inpUser = findViewById(R.id.username_regis);
@@ -51,105 +53,66 @@ public class SignUp extends AppCompatActivity {
         btnSignUp = findViewById(R.id.btn_signUp);
         txtSignIn = findViewById(R.id.btn_signIn);
         btnReset = findViewById(R.id.btn_reset);
+        inpAddress = findViewById(R.id.address);
+        preferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        repo = new UserRepository(this);
 
-        preferences = getSharedPreferences("userInfo", 0);
-
-//        inpRePass.setOnKeyListener(new View.OnKeyListener() {
-//            @Override
-//            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
-//                String nameValue = inpFullname.getEditText().getText().toString();
-//                String emailValue = inpEmail.getEditText().getText().toString();
-//                String phoneValue = inpPhone.getEditText().getText().toString();
-//                String userValue = inpUser.getEditText().getText().toString();
-//                String passValue = inpPass.getEditText().getText().toString();
-//                String repassValue = inpRePass.getEditText().getText().toString();
-//
-//                if (passValue.equals(repassValue)){
-//                    SharedPreferences.Editor editor = preferences.edit();
-//                    editor.putString(KEY_NAME, nameValue);
-//                    editor.putString(KEY_EMAIL, emailValue);
-//                    editor.putString(KEY_PHONE, phoneValue);
-//                    editor.putString(KEY_USER, userValue);
-//                    editor.putString(KEY_PASS, passValue);
-//                    editor.putString(KEY_REPASS, repassValue);
-//                    editor.apply();
-//
-//                    try{
-//                        if (nameValue.equals("") ||
-//                                emailValue.equals("") ||
-//                                phoneValue.equals("") ||
-//                                userValue.equals("") ||
-//                                passValue.equals("") ||
-//                                repassValue.equals("")){
-//                            Toast.makeText(SignUp.this, "Data Cannot be Empty. \nData can be Exhausted.", Toast.LENGTH_LONG).show();
-//                        }else{
-//                            String name = preferences.getString(KEY_NAME, null);
-//                            if (name != null){
-//                                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER){
-//                                    Toast.makeText(SignUp.this, "Successful Registration", Toast.LENGTH_LONG).show();
-//                                    Intent intent = new Intent(SignUp.this, LoginPage.class);
-//                                    startActivity(intent);
-//                                    resetDetailTour();
-//                                    finish();
-//                                }
-//                            }
-//                        }
-//                    }catch (Exception e){
-//                        Toast.makeText(SignUp.this, "Username has been used", Toast.LENGTH_LONG).show();
-//                    }
-//                }else{
-//                    Toast.makeText(SignUp.this, "Password doesn't match", Toast.LENGTH_LONG).show();
-//                }
-//
-//                return false;
-//            }
-//        });
-
+        //Sử dụng khi database chưa thêm các role, sau khi chạy code này rồi thì comment lại nhé.
+//        Role user = new Role();
+//        user.setId(1);
+//        user.setRoleName(1);
+//        Role manager = new Role();
+//        manager.setId(2);
+//        manager.setRoleName(2);
+//        repo_role = new RoleRepository(this);
+//        repo_role.createRole(user);
+//        repo_role.createRole(manager);
+        //-----------------------------------------------------
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserRepository repo = new UserRepository(getApplicationContext());
-                String nameValue = inpFullname.getEditText().getText().toString();
                 String emailValue = inpEmail.getEditText().getText().toString();
                 String phoneValue = inpPhone.getEditText().getText().toString();
                 String userValue = inpUser.getEditText().getText().toString();
                 String passValue = inpPass.getEditText().getText().toString();
                 String repassValue = inpRePass.getEditText().getText().toString();
-
-                if (nameValue.equals("") ||
+                String address = inpAddress.getEditText().getText().toString();
+                if (
                         emailValue.equals("") ||
-                        phoneValue.equals("") ||
-                        userValue.equals("") ||
-                        passValue.equals("") ||
-                        repassValue.equals("")) {
+                                phoneValue.equals("") ||
+                                userValue.equals("") ||
+                                passValue.equals("") ||
+                                repassValue.equals("") ||
+                                address.equals("")) {
                     Toast.makeText(SignUp.this, "Data Cannot be Empty. \nData can be Exhausted.", Toast.LENGTH_LONG).show();
                 } else {
                     if (passValue.equals(repassValue)) {
                         if (isValid(passValue)) {
                             List<User> list = repo.getAllUser();
-                            if(!list.isEmpty()){
-                                for (User item:list) {
-                                    if(item.getUserName().equals(userValue)){
+                            if (!list.isEmpty()) {
+                                for (User item : list) {
+                                    if (item.getUserName().equals(userValue)) {
                                         Toast.makeText(SignUp.this, "Username already exists\n!.", Toast.LENGTH_LONG).show();
                                         return;
                                     }
                                 }
                             }
-User user = new User();
+                            User user = new User();
                             user.setUserName(userValue);
-
-                            String name = preferences.getString(KEY_NAME, null);
-                            String email = preferences.getString(KEY_EMAIL, null);
-                            String phone = preferences.getString(KEY_PHONE, null);
-                            String username = preferences.getString(KEY_USER, null);
-                            String pass = preferences.getString(KEY_PASS, null);
-                            String repass = preferences.getString(KEY_REPASS, null);
-                            if (name != null || email != null || phone != null || username != null || pass != null || repass != null) {
-                                Toast.makeText(SignUp.this, "Successful Registration", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(SignUp.this, LoginPage.class);
-                                startActivity(intent);
-                            }
-                            Toast.makeText(SignUp.this, "Username has been used", Toast.LENGTH_LONG).show();
+                            user.setPassword(passValue);
+                            user.setAddress(address);
+                            user.setAvatar("");
+                            user.setLocked(false);
+                            user.setPhoneNumber(phoneValue);
+                            user.setEmail(emailValue);
+                            user.setRole_id(1);
+                            repo.createUser(user);
+                            Toast.makeText(SignUp.this, "Successful Registration", Toast.LENGTH_LONG).show();
+                            @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = preferences.edit();
+                            editor.putInt("userId", user.getId());
+                            editor.apply();
+//                                Intent intent = new Intent(SignUp.this, LoginPage.class);
+//                                startActivity(intent);
                         } else {
                             Toast.makeText(getApplicationContext(), "Pass must contain at least 8 chars, having letter, digit", Toast.LENGTH_SHORT).show();
                         }
@@ -178,7 +141,6 @@ User user = new User();
     }
 
     public void reset() {
-        inpFullname.getEditText().setText(null);
         inpEmail.getEditText().setText(null);
         inpPhone.getEditText().setText(null);
         inpUser.getEditText().setText(null);
@@ -188,7 +150,7 @@ User user = new User();
 
     public static boolean isValid(String passwordhere) {
 
-        int f1 = 0, f2 = 0, f3 = 0;
+        int f1 = 0, f2 = 0;
 
         if (passwordhere.length() < 8) {
             return false;
@@ -211,19 +173,8 @@ User user = new User();
 
             }
 
-            for (int s = 0; s < passwordhere.length(); s++) {
 
-                char c = passwordhere.charAt(s);
-
-                if (c >= 33 && c <= 46 || c == 64) {
-
-                    f3 = 1;
-
-                }
-
-            }
-
-            if (f1 == 1 && f2 == 1 && f3 == 1)
+            if (f1 == 1 && f2 == 1)
                 return true;
 
         }

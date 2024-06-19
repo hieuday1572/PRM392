@@ -10,24 +10,27 @@ import java.util.List;
 
 public class UserRepository {
     private UserDao userDao;
-    public  UserRepository(Context context){
+
+    public UserRepository(Context context) {
         userDao = PRM392RoomDatabase.getInstance(context).userDao();
     }
-    public void createUser(User user){
-        userDao.insert(user);
+
+    public void createUser(User user) {
+        userDao.addUser(user);
+    }
+
+    public List<User> getAllUser() {
+        return userDao.getAllUser();
+    }
+
+    public User getUserByUsernameAndPassword(String username, String password){
+        return userDao.getUser(username,password);
     }
 
     public void updateUser(User user){
-        userDao.update(user);
+        userDao.updateUser(user);
     }
-
-    public User getUser(int userId){
-        return  userDao.select(userId);
-    }
-    public User getUserByUsernameAndPassword(String username, String password){
-        return  userDao.select(username,password);
-    }
-    public List<User> getAllUser(){
-        return  userDao.selectAll();
+    public void deleteUser(User user){
+        userDao.deleteUser(user);
     }
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.example.carbooking.Entity.Vehicle;
 import com.example.carbooking.dao.PRM392RoomDatabase;
-import com.example.carbooking.dao.UserDao;
 import com.example.carbooking.dao.VehicleDao;
 
 import java.util.List;
