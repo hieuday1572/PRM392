@@ -7,36 +7,40 @@ import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 @Entity(tableName = "User",
-        foreignKeys = @ForeignKey(entity = Role.class, parentColumns = "id", childColumns = "id"))
+        foreignKeys = @ForeignKey(entity = Role.class, parentColumns = "id", childColumns = "RoleId"))
 public class User {
     @PrimaryKey(autoGenerate = true)
     @NotNull
     @ColumnInfo(name = "id")
     private int id;
 
-    @NotNull
+    @Nullable
     @ColumnInfo(name = "username")
     private String userName;
 
-    @NotNull
+    @Nullable
     @ColumnInfo(name = "Password")
-    private String email;
+    private String password;
 
-    @NotNull
+    @Nullable
+    @ColumnInfo(name = "Email")
+    private String email;
+    @Nullable
     @ColumnInfo(name = "PhoneNumber")
     private String phoneNumber;
 
-    @NotNull
+    @Nullable
     @ColumnInfo(name = "Address")
     private String Address;
 
-    @NotNull
+    @Nullable
     @ColumnInfo(name = "RoleId")
     private int Role_id;
 
-    @NotNull
+    @Nullable
     @ColumnInfo(name = "IsLocked")
     private boolean isLocked;
     @ColumnInfo(name = "Avatar")
@@ -50,7 +54,8 @@ public class User {
         this.id = id;
     }
 
-    @NotNull
+
+    @androidx.annotation.Nullable
     public String getUserName() {
         return userName;
     }
@@ -59,7 +64,8 @@ public class User {
         this.userName = userName;
     }
 
-    @NotNull
+
+    @androidx.annotation.Nullable
     public String getEmail() {
         return email;
     }
@@ -68,7 +74,7 @@ public class User {
         this.email = email;
     }
 
-    @NotNull
+    @androidx.annotation.Nullable
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -77,7 +83,7 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    @NotNull
+    @androidx.annotation.Nullable
     public String getAddress() {
         return Address;
     }
@@ -108,5 +114,14 @@ public class User {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    @androidx.annotation.Nullable
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(@NotNull String password) {
+        this.password = password;
     }
 }

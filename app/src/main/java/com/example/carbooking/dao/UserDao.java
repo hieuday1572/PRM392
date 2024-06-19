@@ -17,6 +17,8 @@ public interface UserDao {
     void update(User user);
     @Query("SELECT * FROM User u  WHERE u.id =:userId")
     User select(int userId);
+    @Query("SELECT * FROM User u  WHERE u.username =:username AND u.Password=:password")
+    User select(String username,String password);
     @Query("SELECT * FROM User ")
     List<User> selectAll();
     @Query("DELETE FROM User")

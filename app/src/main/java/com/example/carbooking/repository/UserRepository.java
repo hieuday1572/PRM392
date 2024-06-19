@@ -24,7 +24,9 @@ public class UserRepository {
     public User getUser(int userId){
         return  userDao.select(userId);
     }
-
+    public User getUserByUsernameAndPassword(String username, String password){
+        return  userDao.select(username,password);
+    }
     public List<User> getAllUser(){
         return  userDao.selectAll();
     }

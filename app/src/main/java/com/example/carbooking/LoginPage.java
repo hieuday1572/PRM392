@@ -1,9 +1,10 @@
 package com.example.carbooking;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.carbooking.Entity.User;
+import com.example.carbooking.repository.UserRepository;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginPage extends AppCompatActivity {
@@ -41,8 +44,7 @@ public class LoginPage extends AppCompatActivity {
         btnForgotPass = findViewById(R.id.btn_forgotPass);
         btnSignUp = findViewById(R.id.btn_signUp);
         txtSignUp = findViewById(R.id.ll_signup);
-
-        preferences = getSharedPreferences("userInfo", 0);
+        preferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,49 +54,53 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
-        txtPass.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
-                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER){
-                    String userValue = txtUser.getEditText().getText().toString();
-                    String emailValue = txtUser.getEditText().getText().toString();
-                    String passValue = txtPass.getEditText().getText().toString();
-
-                    String loginUser = preferences.getString("user","");
-                    String emailUser = preferences.getString("email","");
-                    String loginPass = preferences.getString("pass","");
-
-                    if (userValue.equals(loginUser) && passValue.equals(loginPass) || emailValue.equals(emailUser) && passValue.equals(loginPass)){
-                        Intent intent = new Intent(LoginPage.this,  MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                        Toast.makeText(LoginPage.this, "Login", Toast.LENGTH_LONG).show();
-                    }else {
-                        Toast.makeText(LoginPage.this, "Username or Password doesn't match", Toast.LENGTH_LONG).show();
-                    }
-                }
-                return false;
-            }
-        });
+//        txtPass.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+//                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER){
+//                    String userValue = txtUser.getEditText().getText().toString();
+//                    String emailValue = txtUser.getEditText().getText().toString();
+//                    String passValue = txtPass.getEditText().getText().toString();
+//
+//                    String loginUser = preferences.getString("user","");
+//                    String emailUser = preferences.getString("email","");
+//                    String loginPass = preferences.getString("pass","");
+//
+//                    if (userValue.equals(loginUser) && passValue.equals(loginPass) || emailValue.equals(emailUser) && passValue.equals(loginPass)){
+//                        Intent intent = new Intent(LoginPage.this,  MainActivity.class);
+//                        startActivity(intent);
+//                        finish();
+//                        Toast.makeText(LoginPage.this, "Login", Toast.LENGTH_LONG).show();
+//                    }else {
+//                        Toast.makeText(LoginPage.this, "Username or Password doesn't match", Toast.LENGTH_LONG).show();
+//                    }
+//                }
+//                return false;
+//            }
+//        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String userValue = txtUser.getEditText().getText().toString();
-                String emailValue = txtUser.getEditText().getText().toString();
                 String passValue = txtPass.getEditText().getText().toString();
+                UserRepository repo = new UserRepository(getApplicationContext());
 
-                String loginUser = preferences.getString("user","");
-                String emailUser = preferences.getString("email","");
-                String loginPass = preferences.getString("pass","");
-
-                if (userValue.equals(loginUser) && passValue.equals(loginPass) || emailValue.equals(emailUser) && passValue.equals(loginPass)){
-                    Intent intent = new Intent(LoginPage.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                    Toast.makeText(LoginPage.this, "Login", Toast.LENGTH_LONG).show();
-                }else {
-                    Toast.makeText(LoginPage.this, "Username or Password doesn't match", Toast.LENGTH_LONG).show();
+                if (userValue.isEmpty() || passValue.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please fill all data", Toast.LENGTH_SHORT).show();
+                } else {
+                    User user = repo.getUserByUsernameAndPassword(userValue, passValue);
+                    if (user != null) {
+                        @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = preferences.edit();
+                        editor.putInt("userId",user.getId());
+                        editor.apply();
+//                        Intent intent = new Intent(LoginPage.this, MainActivity.class);
+//                        startActivity(intent);
+//                        finish();
+                        Toast.makeText(LoginPage.this, "Login successfully", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(LoginPage.this, "Username or Password doesn't match", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });
