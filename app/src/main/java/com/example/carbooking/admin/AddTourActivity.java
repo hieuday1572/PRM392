@@ -208,7 +208,7 @@ public class AddTourActivity extends AppCompatActivity {
 
                     boolean isActive = true;
                     int votedNumber = 0;
-                    int voteScore =0;
+                    int voteScore = 1;
                     Tour newTour = new Tour(
                             title,
                             locationFrom,
