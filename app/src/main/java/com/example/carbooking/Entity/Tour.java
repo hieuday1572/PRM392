@@ -6,6 +6,7 @@ import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Date;
 
@@ -63,6 +64,9 @@ public class Tour {
     @ColumnInfo(name = "contactNumber")
     private String contactNumber;
 
+    @Nullable
+    @ColumnInfo(name = "image")
+    private String image;
 
     public Tour( @NotNull String tile, @NotNull String locationFrom, @NotNull String locationTo, @NotNull String tourTime, int dateNumber, @NotNull String description, @NotNull String tourSchdule, double pricePerPerson, int vehicle, int categoryId, int votedNumber, int voteScore, boolean isAvaliable, @NotNull String contactNumber) {
         this.tile = tile;
@@ -208,5 +212,13 @@ public class Tour {
 
     public void setContactNumber(@NotNull String contactNumber) {
         this.contactNumber = contactNumber;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -12,7 +12,8 @@ public class UserRepository {
     private UserDao userDao;
 
     public UserRepository(Context context) {
-        userDao = PRM392RoomDatabase.getInstance(context).userDao();
+        PRM392RoomDatabase db = PRM392RoomDatabase.getInstance(context);
+        userDao = db.userDao();
     }
 
     public void createUser(User user) {

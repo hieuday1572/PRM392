@@ -28,7 +28,7 @@ public class LoginPage extends AppCompatActivity {
     Button btnLogin, btnForgotPass;
 
     SharedPreferences preferences;
-
+    UserRepository repo = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +45,7 @@ public class LoginPage extends AppCompatActivity {
         btnSignUp = findViewById(R.id.btn_signUp);
         txtSignUp = findViewById(R.id.ll_signup);
         preferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-
+        repo = new UserRepository(this);
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,8 +84,6 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View view) {
                 String userValue = txtUser.getEditText().getText().toString();
                 String passValue = txtPass.getEditText().getText().toString();
-                UserRepository repo = new UserRepository(getApplicationContext());
-
                 if (userValue.isEmpty() || passValue.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please fill all data", Toast.LENGTH_SHORT).show();
                 } else {

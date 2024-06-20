@@ -20,7 +20,7 @@ import com.example.carbooking.Entity.User;
 import com.example.carbooking.Entity.Vehicle;
 
 @Database(entities = {Category.class, Order.class,
-        Role.class, Status.class, Tour.class, User.class, Vehicle.class}, version = 4)
+        Role.class, Status.class, Tour.class, User.class, Vehicle.class}, version = 5)
 @TypeConverters({Converters.class})
 public abstract class PRM392RoomDatabase extends RoomDatabase {
     private static final String DB_NAME = "PRM392Database";
@@ -39,12 +39,18 @@ public abstract class PRM392RoomDatabase extends RoomDatabase {
                 INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                 PRM392RoomDatabase.class, DB_NAME)
                         .allowMainThreadQueries()
-                        .fallbackToDestructiveMigrationFrom()
+                        .addMigrations(MIGRATION_4_5)
+                        .fallbackToDestructiveMigrationFrom(1,2)
                         .enableMultiInstanceInvalidation()
-
                         .build();
         }
         return INSTANCE;
     }
-
+    static final Migration MIGRATION_4_5 = new Migration(4, 5) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            // Thêm cột mới 'image' với giá trị mặc định là null
+            database.execSQL("ALTER TABLE Tour ADD COLUMN image TEXT DEFAULT NULL");
+        }
+    };
 }
