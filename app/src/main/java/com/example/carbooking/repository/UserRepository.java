@@ -24,14 +24,19 @@ public class UserRepository {
         return userDao.getAllUser();
     }
 
-    public User getUserByUsernameAndPassword(String username, String password){
-        return userDao.getUser(username,password);
+    public User getUserByUsernameAndPassword(String username, String password) {
+        return userDao.getUser(username, password);
     }
 
-    public void updateUser(User user){
+    public User getUserByUsername(String username) {
+        return userDao.getUser(username);
+    }
+
+    public void updateUser(User user) {
         userDao.updateUser(user);
     }
-    public void deleteUser(User user){
+
+    public void deleteUser(User user) {
         userDao.deleteUser(user);
     }
 }

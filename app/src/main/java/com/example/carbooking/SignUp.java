@@ -58,15 +58,15 @@ public class SignUp extends AppCompatActivity {
         repo = new UserRepository(this);
 
         //Sử dụng khi database chưa thêm các role, sau khi chạy code này rồi thì comment lại nhé.
-//        Role user = new Role();
-//        user.setId(1);
-//        user.setRoleName(1);
-//        Role manager = new Role();
-//        manager.setId(2);
-//        manager.setRoleName(2);
-//        repo_role = new RoleRepository(this);
-//        repo_role.createRole(user);
-//        repo_role.createRole(manager);
+        Role user = new Role();
+        user.setId(1);
+        user.setRoleName(1);
+        Role manager = new Role();
+        manager.setId(2);
+        manager.setRoleName(2);
+        repo_role = new RoleRepository(this);
+        repo_role.createRole(user);
+        repo_role.createRole(manager);
         //-----------------------------------------------------
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
