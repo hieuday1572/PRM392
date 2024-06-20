@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -30,12 +31,13 @@ android {
 
 dependencies {
     implementation("androidx.room:room-runtime:2.4.3")
+    implementation(libs.firebase.auth)
     annotationProcessor("androidx.room:room-compiler:2.4.3")
     androidTestImplementation("androidx.room:room-testing:2.4.3")
     implementation ("com.squareup.picasso:picasso:2.8")
 
 
-
+    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -43,4 +45,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation("com.google.firebase:firebase-auth")
 }

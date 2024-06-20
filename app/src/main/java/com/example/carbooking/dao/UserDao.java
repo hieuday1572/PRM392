@@ -23,4 +23,6 @@ public interface UserDao {
     public User getUser(int user_id);
     @Query("select * from User where username==:username and Password==:password")
     public User getUser(String username, String password);
+    @Query("select * from User where username==:username")
+    public User getUser(String username);
 }
