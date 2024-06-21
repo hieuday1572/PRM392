@@ -9,9 +9,4 @@
 
     <string name="channel_name">Travel App v2.6 (BETA)</string>
     <string name="channel_desc">Application Travel Viet Nam</string>
-
-    <string name="desc_tour">Desc Tour</string>
-    <string name="desc_tour_content_desc">Description of the tour</string>
-
-    <string name="btn_img_loc_desc">Location button</string>
 </resources>

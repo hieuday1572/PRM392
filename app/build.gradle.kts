@@ -45,11 +45,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-<<<<<<< Updated upstream
     implementation("com.google.firebase:firebase-auth")
-=======
-    implementation(libs.glide)
-    annotationProcessor(libs.glide.compiler)
-    implementation("com.example.receipt:receipt-lib:1.0.0")
->>>>>>> Stashed changes
 }
