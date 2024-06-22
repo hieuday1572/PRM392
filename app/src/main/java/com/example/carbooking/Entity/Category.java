@@ -35,4 +35,8 @@ public class Category {
     public String toString() {
         return categoryName; // This makes the ArrayAdapter display the vehicle name
     }
+
+    public Category(@NotNull String categoryName) {
+        this.categoryName = categoryName;
+    }
 }

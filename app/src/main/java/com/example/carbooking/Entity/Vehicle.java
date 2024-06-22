@@ -16,6 +16,10 @@ public class Vehicle {
     @NotNull
     private String vehicleName;
 
+    public Vehicle(String vehicleName) {
+        this.vehicleName = vehicleName;
+    }
+
     public int getId() {
         return id;
     }

@@ -5,172 +5,35 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="2"
-    android:background="@drawable/gradient_background"
-    android:orientation="vertical"
-    tools:context=".admin.AddTourActivity">
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weight="2"
-    android:orientation="vertical"
+    tools:context=".admin.tour.AddTourActivity"
+    android:background="#FFFAF0"
     >
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="30dp">
-        <ImageButton
-            android:id="@+id/back_homepage_admin"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/icon_before"
-            android:background="#3333"
-            android:scaleX="1.5"
-            android:scaleY="1.5"
-            android:padding="5dp"/>
-    </LinearLayout>
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ADD TOUR"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="25dp"
-            android:padding="40dp"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="12dp"
-            android:textColor="#EEEE">
+            android:orientation="vertical"
+            android:padding="12dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Title: "
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/edt_title_tour"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:hint="Enter tour title"
-                    android:textSize="13dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Loctation from: "
-                    android:textSize="14dp"
+                    android:gravity="center"
+                    android:padding="40dp"
+                    android:text="ADD TOUR"
+                    android:textSize="40dp"
                     android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/edt_location_from"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:hint="Enter loction from"
-                    android:textSize="13dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Loctation to: "
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/edt_location_to"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:hint="Enter loction to"
-                    android:textSize="13dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tour time: "
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/edt_tour_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:hint="Enter tour time"
-                    android:textSize="13dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Date number: "
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/edt_date_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:hint="Enter number date"
-                    android:textSize="13dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tour Schedule: "
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/edt_tour_schedule"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:hint="Enter tour schedule"
-                    android:textSize="13dp" />
-
-
-                <Button
-                    android:id="@+id/btn_addTour"
-                    android:layout_width="wrap_content"
-                    android:layout_height="37dp"
-                    android:layout_marginRight="0dp"
-                    android:text="Save" />
-
             </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:padding="12dp"
-            android:textColor="#EEEE">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -180,66 +43,170 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Title: "
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edt_title_tour"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="8dp"
+                    android:hint="Enter tour title"
+                    android:background="@drawable/edt_text_background"
+                    android:paddingLeft="10dp"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Location from: "
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edt_location_from"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/edt_text_background"
+                    android:hint="Enter location from"
+                    android:paddingLeft="10dp"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Location to: "
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edt_location_to"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="8dp"
+                    android:hint="Enter location to"
+                    android:background="@drawable/edt_text_background"
+                    android:paddingLeft="10dp"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tour time: "
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edt_tour_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/edt_text_background"
+                    android:hint="Enter tour time"
+                    android:paddingLeft="10dp"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date number: "
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edt_date_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="8dp"
+                    android:hint="Enter number of dates"
+                    android:background="@drawable/edt_text_background"
+                    android:paddingLeft="10dp"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tour Schedule: "
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edt_tour_schedule"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="8dp"
+                    android:hint="Enter tour schedule"
+                    android:background="@drawable/edt_text_background"
+                    android:paddingLeft="10dp"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="Price per person: "
-                    android:textSize="14dp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/edt_price_person"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_marginLeft="8dp"
                     android:hint="Enter price per person"
-                    android:textSize="13dp" />
+                    android:background="@drawable/edt_text_background"
+                    android:paddingLeft="10dp"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Contact: "
-                    android:textSize="14dp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/edt_contact_number"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_marginLeft="8dp"
+                    android:background="@drawable/edt_text_background"
                     android:hint="Enter phone number"
-                    android:textSize="13dp" />
+                    android:paddingLeft="10dp"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Category: "
-                    android:textSize="14dp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/spinner_category"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleX="0.8"
-                    android:scaleY="0.8" />
+                    android:background="@drawable/edt_text_background"
+                    android:layout_height="30dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/edt_text_background"
                     android:text="Vehicle: "
-                    android:textSize="14dp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/spinner_vehicle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleX="0.8"
-                    android:scaleY="0.8" />
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Description: "
-                    android:textSize="14dp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <EditText
@@ -248,18 +215,29 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:gravity="top|start"
-                    android:hint="Enter description tour......"
+                    android:background="@drawable/edt_text_background"
+                    android:hint="Enter tour description..."
+                    
                     android:inputType="textMultiLine"
                     android:lines="4"
                     android:minLines="3"
-                    android:textSize="13dp" />
+                    android:paddingLeft="10dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/btn_addTour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginBottom="100dp"
+                        android:layout_marginRight="20dp"
+                        android:text="Save" />
+                </LinearLayout>
 
             </LinearLayout>
-
         </LinearLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
-
+    </ScrollView>
 </androidx.drawerlayout.widget.DrawerLayout>

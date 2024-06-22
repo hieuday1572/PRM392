@@ -1,7 +1,9 @@
 package com.example.carbooking.admin;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -18,12 +20,16 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.carbooking.R;
+import com.example.carbooking.admin.tour.AddTourActivity;
+import com.example.carbooking.admin.tour.EditTourActivity;
+import com.example.carbooking.admin.tour.ListTourActivity;
 import com.google.android.material.navigation.NavigationView;
 
 public class HomePageAdminActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageButton buttonDrawerToggle;
     NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,24 +65,37 @@ public class HomePageAdminActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                 int itemId = menuItem.getItemId();
+                if (itemId == R.id.nav_tour_management) {
+                    // Toggle submenu visibility
+                    menuItem.setChecked(!menuItem.isChecked());
+                    if (menuItem.isChecked()) {
+                        navigationView.getMenu().setGroupVisible(R.id.nav_tour_management, true);
+                    } else {
+                        navigationView.getMenu().setGroupVisible(R.id.nav_tour_management, false);
+                    }
+                    return true;
+                }
 
                 if(itemId == R.id.navAddTour){
                     Intent intent = new Intent(HomePageAdminActivity.this, AddTourActivity.class);
                     startActivity(intent);
                 }
-                if(itemId == R.id.navEditTour){
+                else if(itemId == R.id.navEditTour){
+                    Intent intent = new Intent(HomePageAdminActivity.this, ListTourActivity.class);
+                    startActivity(intent);
                     Toast.makeText(HomePageAdminActivity.this, "Edit clicked", Toast.LENGTH_SHORT).show();
                 }
-                if(itemId == R.id.navRemoveTour){
+                else if(itemId == R.id.navRemoveTour){
                     Toast.makeText(HomePageAdminActivity.this, "Remove clicked", Toast.LENGTH_SHORT).show();
                 }
-                if(itemId == R.id.navFavorite){
-                    Toast.makeText(HomePageAdminActivity.this, "Favorited clicked", Toast.LENGTH_SHORT).show();
+                else
+                    if(itemId == R.id.navFavorite){
+                    Toast.makeText(HomePageAdminActivity.this, "Favorited clicked !", Toast.LENGTH_SHORT).show();
                 }
-                if(itemId == R.id.navReport){
+                else if(itemId == R.id.navReport){
                     Toast.makeText(HomePageAdminActivity.this, "Report clicked", Toast.LENGTH_SHORT).show();
                 }
-                if(itemId == R.id.navHistory){
+                else if(itemId == R.id.navHistory){
                     Toast.makeText(HomePageAdminActivity.this, "History clicked", Toast.LENGTH_SHORT).show();
                 }
                drawerLayout.close();
@@ -86,10 +105,18 @@ public class HomePageAdminActivity extends AppCompatActivity {
             }
         });
 
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.drawerLayoutAdmin), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+    }
+    @SuppressLint("RestrictedApi")
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.drawer_items, menu);
+        return true;
     }
 }

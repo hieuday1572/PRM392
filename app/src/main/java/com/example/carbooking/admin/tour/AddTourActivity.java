@@ -1,8 +1,7 @@
-package com.example.carbooking.admin;
+package com.example.carbooking.admin.tour;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,18 +16,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.carbooking.Entity.Category;
 import com.example.carbooking.Entity.Tour;
 import com.example.carbooking.Entity.Vehicle;
 import com.example.carbooking.R;
+import com.example.carbooking.admin.HomePageAdminActivity;
 import com.example.carbooking.repository.CategoryRepository;
 import com.example.carbooking.repository.TourRepository;
 import com.example.carbooking.repository.VehicleRepository;
-import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AddTourActivity extends AppCompatActivity {
@@ -119,15 +116,6 @@ public class AddTourActivity extends AppCompatActivity {
 
 
         //------------------------
-
-            btnBack = findViewById(R.id.back_homepage_admin);
-            btnBack.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(AddTourActivity.this, HomePageAdminActivity.class);
-                    startActivity(intent);
-                }
-            });
 
 
 

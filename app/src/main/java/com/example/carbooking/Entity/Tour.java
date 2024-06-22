@@ -3,6 +3,7 @@ package com.example.carbooking.Entity;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
@@ -67,7 +68,10 @@ public class Tour {
     @Nullable
     @ColumnInfo(name = "image")
     private String image;
+    public Tour(){
 
+    }
+    @Ignore
     public Tour( @NotNull String tile, @NotNull String locationFrom, @NotNull String locationTo, @NotNull String tourTime, int dateNumber, @NotNull String description, @NotNull String tourSchdule, double pricePerPerson, int vehicle, int categoryId, int votedNumber, int voteScore, boolean isAvaliable, @NotNull String contactNumber) {
         this.tile = tile;
         this.locationFrom = locationFrom;
@@ -84,6 +88,26 @@ public class Tour {
         this.isAvaliable = isAvaliable;
         this.contactNumber = contactNumber;
     }
+    @Ignore
+    public Tour(@NotNull int id,@NotNull String tile, @NotNull String locationFrom, @NotNull String locationTo, @NotNull String tourTime, int dateNumber, @NotNull String description, @NotNull String tourSchdule, double pricePerPerson, int vehicle, int categoryId, int votedNumber, int voteScore, boolean isAvaliable, @NotNull String contactNumber) {
+        this.id = id;
+        this.tile = tile;
+        this.locationFrom = locationFrom;
+        this.locationTo = locationTo;
+        this.tourTime = tourTime;
+        this.dateNumber = dateNumber;
+        this.description = description;
+        this.tourSchdule = tourSchdule;
+        this.pricePerPerson = pricePerPerson;
+        this.vehicle = vehicle;
+        this.categoryId = categoryId;
+        this.votedNumber = votedNumber;
+        this.voteScore = voteScore;
+        this.isAvaliable = isAvaliable;
+        this.contactNumber = contactNumber;
+    }
+
+
 
     public int getId() {
         return id;
