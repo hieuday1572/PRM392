@@ -15,6 +15,12 @@
         <activity
             android:name=".admin.vehicle.ListVehicleActivity"
             android:exported="true" />
+         <activity
+            android:name=".NewPassword"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="false" />
         <activity
             android:name=".admin.vehicle.DeleteVehicleActivity"
             android:exported="true" />
