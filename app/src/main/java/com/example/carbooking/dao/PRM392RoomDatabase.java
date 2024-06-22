@@ -40,7 +40,7 @@ public abstract class PRM392RoomDatabase extends RoomDatabase {
                                 PRM392RoomDatabase.class, DB_NAME)
                         .allowMainThreadQueries()
                         .addMigrations(MIGRATION_4_5)
-                        .fallbackToDestructiveMigrationFrom(1,2)
+                        .fallbackToDestructiveMigrationFrom()
                         .enableMultiInstanceInvalidation()
                         .build();
         }

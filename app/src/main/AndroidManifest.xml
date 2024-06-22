@@ -13,13 +13,37 @@
         android:theme="@style/Theme.TravelApp"
         tools:targetApi="31">
         <activity
-            android:name=".admin.ListTourActivity"
+            android:name=".admin.vehicle.ListVehicleActivity"
             android:exported="true" />
         <activity
-            android:name=".admin.EditTourActivity"
+            android:name=".admin.vehicle.DeleteVehicleActivity"
             android:exported="true" />
         <activity
-            android:name=".admin.AddTourActivity"
+            android:name=".admin.vehicle.EditVehicleActivity"
+            android:exported="true" />
+        <activity
+            android:name=".admin.vehicle.AddVehicleActivity"
+            android:exported="true" />
+        <activity
+            android:name=".admin.category.ListCategoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".admin.category.DeleteCategoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".admin.category.EditCategoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".admin.category.AddCategoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".admin.tour.ListTourActivity"
+            android:exported="true" />
+        <activity
+            android:name=".admin.tour.EditTourActivity"
+            android:exported="true" />
+        <activity
+            android:name=".admin.tour.AddTourActivity"
             android:exported="true" />
         <activity
             android:name=".admin.HomePageAdminActivity"
