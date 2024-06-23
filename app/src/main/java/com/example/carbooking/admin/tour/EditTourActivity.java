@@ -1,16 +1,21 @@
 package com.example.carbooking.admin.tour;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
+import com.bumptech.glide.Glide;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -21,25 +26,31 @@ import com.example.carbooking.Entity.Tour;
 import com.example.carbooking.Entity.Vehicle;
 import com.example.carbooking.R;
 import com.example.carbooking.helpler.FormatUtils;
+import com.example.carbooking.helpler.SaveImageToStorage;
 import com.example.carbooking.repository.CategoryRepository;
 import com.example.carbooking.repository.TourRepository;
 import com.example.carbooking.repository.VehicleRepository;
 
+import java.net.URI;
 import java.util.List;
 
 public class EditTourActivity extends AppCompatActivity {
+    private final  int GALLERY_REQ_CODE = 1000;
     private TourRepository tourRepository;
     private CategoryRepository categoryRepository;
     private VehicleRepository vehicleRepository;
     private List<Category> categoryList;
     private List<Vehicle> vehicleList = null;
+    private Context context;
     private int tourId;
+    ImageView imgViewEdit;
     private EditText edtTitleEdit, edtLocationFromEdit,  edtLocationToEdit,
             edtTourTimeEdit, edtDateNumberEdit, edtTourScheduleEdit, edtPricePersonEdit,
             edtContactNumberEdit, edtDescriptionEdit;
     private RadioButton radioActive, radioBan;
     String status = "";
     private Button btnEditTour;
+    private SaveImageToStorage saveImageToStorage;
 
     private Spinner spinnerCategoryEdit, spinnerVehicleEdit;
     @Override
@@ -55,6 +66,8 @@ public class EditTourActivity extends AppCompatActivity {
         tourRepository = new TourRepository(this);
         categoryRepository = new CategoryRepository(this);
         vehicleRepository = new VehicleRepository(this);
+        saveImageToStorage = new SaveImageToStorage(this);
+
         tourId = getIntent().getIntExtra("tourId", -1);
         System.out.println("tourId : " + tourId);
         categoryList = categoryRepository.getAllCategory();
@@ -76,6 +89,17 @@ public class EditTourActivity extends AppCompatActivity {
             btnEditTour = findViewById(R.id.btn_editTour);
             radioActive = findViewById(R.id.radio_active);
             radioBan = findViewById(R.id.radio_ban);
+            imgViewEdit = findViewById(R.id.IVPreviewImageEdit);
+
+            String imageUriString = tourById.getImage();
+            Glide.with(EditTourActivity.this)
+                    .load(imageUriString)
+                    .placeholder(R.drawable.ic_user)
+                    .error(R.drawable.ic_user)
+                    .into(imgViewEdit);
+
+
+//            imgViewEdit.setImageURI(imageUri);
             edtTitleEdit.setText(tourById.getTile());
             edtLocationFromEdit.setText(tourById.getLocationFrom());
             edtLocationToEdit.setText(tourById.getLocationTo());
@@ -155,23 +179,23 @@ public class EditTourActivity extends AppCompatActivity {
                     double pricePerPersonUpdate = Double.parseDouble(pricePerPersonStr);
                     String contactNumber = edtContactNumberEdit.getText().toString();
                     String description = edtDescriptionEdit.getText().toString();
-
                     Category selectedCategory = (Category) spinnerCategoryEdit.getSelectedItem();
                     int categoryIdSelected = selectedCategory.getId();
                     Vehicle selectedVehice = (Vehicle) spinnerVehicleEdit.getSelectedItem();
                     int vehicleIdSelected = selectedVehice.getId();
                     int voteNumber = tourById.getVotedNumber();
                     int voteScore = tourById.getVoteScore();
-                    System.out.println("category Selected" + categoryIdSelected);
-                    System.out.println("vehicle Selected" + vehicleIdSelected);
+                    String imgPath = saveImageToStorage.saveImageFromImageView(imgViewEdit);
                     boolean statusUpdate = true;
-                    if(status == "true"){
+                    if(status.isEmpty()){
+                         statusUpdate =  tourById.isAvaliable();;
+                    }else if(status == "true"){
                          statusUpdate = true;
                     }else{
-                         statusUpdate = false;
+                        statusUpdate = false;
                     }
 
-                    Tour tourById = new Tour(tourId,title,locationFrom,locationTo,tourTime,dateNumberUpdate,description,tourSchedule,pricePerPersonUpdate,vehicleIdSelected,categoryIdSelected,voteNumber,voteScore,statusUpdate,contactNumber);
+                    Tour tourById = new Tour(tourId,title,locationFrom,locationTo,tourTime,dateNumberUpdate,description,tourSchedule,pricePerPersonUpdate,vehicleIdSelected,categoryIdSelected,voteNumber,voteScore,statusUpdate,contactNumber,imgPath);
                     tourRepository.updateTour(tourById);
                     Toast.makeText(EditTourActivity.this, "UpdateSuccess", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(EditTourActivity.this,ListTourActivity.class);
@@ -182,7 +206,27 @@ public class EditTourActivity extends AppCompatActivity {
 
         } else {
             Toast.makeText(this, "Tour not found!", Toast.LENGTH_SHORT).show();
-            finish(); // Finish activity if tour is not found
+            finish(); 
+        }
+        Button selectedImage = findViewById(R.id.BSelectImageEdit);
+        imgViewEdit = findViewById(R.id.IVPreviewImageEdit);
+        selectedImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iGallrey = new Intent(Intent.ACTION_PICK);
+                iGallrey.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(iGallrey, GALLERY_REQ_CODE);
+            }
+        });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if(resultCode == RESULT_OK){
+            if(requestCode == GALLERY_REQ_CODE){
+                imgViewEdit.setImageURI(data.getData());
+                System.out.println("data: " + data.getData());
+            }
         }
     }
 }

@@ -35,6 +35,9 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:2.4.3")
     androidTestImplementation("androidx.room:room-testing:2.4.3")
     implementation ("com.squareup.picasso:picasso:2.8")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+
+
 
 
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
