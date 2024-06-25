@@ -53,7 +53,7 @@ public class ListTourActivity extends AppCompatActivity {
                 int id = tourBan.getId();
                 tourBan = new Tour(id,tourBan.getTile(),tourBan.getLocationFrom(),tourBan.getLocationTo(),tourBan.getTourTime(),tourBan.getDateNumber(),
                         tourBan.getDescription(),tourBan.getTourSchdule(),tourBan.getPricePerPerson(),tourBan.getVehicle(),tourBan.getCategoryId(),
-                        tourBan.getVotedNumber(),tourBan.getVoteScore(),banTour,tourBan.getContactNumber());
+                        tourBan.getVotedNumber(),tourBan.getVoteScore(),banTour,tourBan.getContactNumber(),tourBan.getImage());
                 tourRepository.updateTour(tourBan);
                 Toast.makeText(ListTourActivity.this, "Remove success", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ListTourActivity.this, ListTourActivity.class);

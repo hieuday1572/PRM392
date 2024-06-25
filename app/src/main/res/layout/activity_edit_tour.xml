@@ -38,7 +38,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <Button
+                    android:id="@+id/BSelectImageEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="32dp"
+                    android:text="SELECT IMAGE"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
 
+                <!--ImageView to preview the selected image-->
+                <ImageView
+                    android:id="@+id/IVPreviewImageEdit"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_below="@id/BSelectImageEdit"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

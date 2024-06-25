@@ -12,9 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.carbooking.Entity.Role;
 import com.example.carbooking.Entity.User;
-import com.example.carbooking.repository.RoleRepository;
 import com.example.carbooking.repository.UserRepository;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -22,23 +20,11 @@ import java.util.List;
 
 public class SignUp extends AppCompatActivity {
     TextView txtSignIn;
-    TextView txtTitle, txtSub;
+    TextView txtTitle;
     TextInputLayout inpEmail, inpPhone, inpUser, inpPass, inpRePass, inpAddress;
     Button btnSignUp, btnReset;
     private UserRepository repo = null;
-    private RoleRepository repo_role = null;
     SharedPreferences preferences;
-
-    private static final String KEY_NAME = "name";
-    private static final String KEY_EMAIL = "email";
-    private static final String KEY_PHONE = "phone";
-    private static final String KEY_USER = "user";
-    private static final String KEY_PASS = "pass";
-    private static final String KEY_REPASS = "repass";
-
-    private static final String KEY_TOTAL_PRICE = "total_price";
-    private static final String KEY_NAME_TOUR = "name_tour";
-    private static final String KEY_COUNT_ITEMS = "count_items";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,17 +43,6 @@ public class SignUp extends AppCompatActivity {
         preferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         repo = new UserRepository(this);
 
-        //Sử dụng khi database chưa thêm các role, sau khi chạy code này rồi thì comment lại nhé.
-        Role user = new Role();
-        user.setId(1);
-        user.setRoleName(1);
-        Role manager = new Role();
-        manager.setId(2);
-        manager.setRoleName(2);
-        repo_role = new RoleRepository(this);
-        repo_role.createRole(user);
-        repo_role.createRole(manager);
-        //-----------------------------------------------------
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,8 +86,9 @@ public class SignUp extends AppCompatActivity {
                             @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = preferences.edit();
                             editor.putInt("userId", user.getId());
                             editor.apply();
-//                                Intent intent = new Intent(SignUp.this, LoginPage.class);
-//                                startActivity(intent);
+                            Intent intent = new Intent(SignUp.this, LoginPage.class);
+                            startActivity(intent);
+                            finish();
                         } else {
                             Toast.makeText(getApplicationContext(), "Pass must contain at least 8 chars, having letter, digit", Toast.LENGTH_SHORT).show();
                         }

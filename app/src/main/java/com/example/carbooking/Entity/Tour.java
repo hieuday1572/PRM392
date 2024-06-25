@@ -72,7 +72,7 @@ public class Tour {
 
     }
     @Ignore
-    public Tour( @NotNull String tile, @NotNull String locationFrom, @NotNull String locationTo, @NotNull String tourTime, int dateNumber, @NotNull String description, @NotNull String tourSchdule, double pricePerPerson, int vehicle, int categoryId, int votedNumber, int voteScore, boolean isAvaliable, @NotNull String contactNumber) {
+    public Tour( @NotNull String tile, @NotNull String locationFrom, @NotNull String locationTo, @NotNull String tourTime, int dateNumber, @NotNull String description, @NotNull String tourSchdule, double pricePerPerson, int vehicle, int categoryId, int votedNumber, int voteScore, boolean isAvaliable, @NotNull String contactNumber, String image) {
         this.tile = tile;
         this.locationFrom = locationFrom;
         this.locationTo = locationTo;
@@ -87,9 +87,10 @@ public class Tour {
         this.voteScore = voteScore;
         this.isAvaliable = isAvaliable;
         this.contactNumber = contactNumber;
+        this.image = image;
     }
     @Ignore
-    public Tour(@NotNull int id,@NotNull String tile, @NotNull String locationFrom, @NotNull String locationTo, @NotNull String tourTime, int dateNumber, @NotNull String description, @NotNull String tourSchdule, double pricePerPerson, int vehicle, int categoryId, int votedNumber, int voteScore, boolean isAvaliable, @NotNull String contactNumber) {
+    public Tour(@NotNull int id,@NotNull String tile, @NotNull String locationFrom, @NotNull String locationTo, @NotNull String tourTime, int dateNumber, @NotNull String description, @NotNull String tourSchdule, double pricePerPerson, int vehicle, int categoryId, int votedNumber, int voteScore, boolean isAvaliable, @NotNull String contactNumber,String image) {
         this.id = id;
         this.tile = tile;
         this.locationFrom = locationFrom;
@@ -105,6 +106,7 @@ public class Tour {
         this.voteScore = voteScore;
         this.isAvaliable = isAvaliable;
         this.contactNumber = contactNumber;
+        this.image = image;
     }
 
 
