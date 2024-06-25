@@ -31,6 +31,9 @@ public class UserRepository {
     public User getUserByUsername(String username) {
         return userDao.getUser(username);
     }
+    public User getUserById(int id) {
+        return userDao.getUser(id);
+    }
 
     public void updateUser(User user) {
         userDao.updateUser(user);

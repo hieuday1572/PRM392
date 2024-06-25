@@ -1,124 +1,110 @@
 package com.example.carbooking;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.carbooking.Entity.User;
+import com.example.carbooking.helpler.SaveImageToStorage;
+import com.example.carbooking.repository.UserRepository;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class EditUser extends AppCompatActivity {
-    TextInputLayout inpName, inpEmail, inpPhone, inpUser, inpPass, inpRePass;
-    Button btnUpdate, btnReset;
-
+    private final int GALLERY_REQ_CODE = 1000;
+    TextInputLayout inpEmail, inpPhone, inpUser, inpAddress, inpRole;
+    Button btnUpdate, btnReset, selectImage;
+    private SaveImageToStorage saveImageToStorage;
     SharedPreferences preferences;
-
-    private static final String KEY_NAME = "name";
-    private static final String KEY_EMAIL = "email";
-    private static final String KEY_PHONE = "phone";
-    private static final String KEY_USER = "user";
-    private static final String KEY_PASS = "pass";
-    private static final String KEY_REPASS = "repass";
+    UserRepository repo = null;
+    ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
-
-        inpName = findViewById(R.id.name_edit);
+        saveImageToStorage = new SaveImageToStorage(this);
         inpEmail = findViewById(R.id.email_edit);
         inpPhone = findViewById(R.id.phone_edit);
         inpUser = findViewById(R.id.username_edit);
-        inpPass = findViewById(R.id.password_edit);
-        inpRePass = findViewById(R.id.retype_password_edit);
-
+        inpAddress = findViewById(R.id.address_edit);
+        inpRole = findViewById(R.id.role_edit);
+        image = findViewById(R.id.image);
         btnUpdate = findViewById(R.id.btn_update);
-        btnReset = findViewById(R.id.btn_reset);
-
-        preferences = getSharedPreferences("userInfo", 0);
-
-        String nameView = preferences.getString(KEY_NAME, null);
-        String emailView = preferences.getString(KEY_EMAIL, null);
-        String phoneView = preferences.getString(KEY_PHONE, null);
-        String userView = preferences.getString(KEY_USER, null);
-        String passView = preferences.getString(KEY_PASS, null);
-        String repassView = preferences.getString(KEY_REPASS, null);
-
-        if (nameView != null || emailView != null || phoneView != null || userView != null || passView != null || repassView != null){
-            inpName.getEditText().setText(nameView);
+        btnReset = findViewById(R.id.btn_back);
+        selectImage = findViewById(R.id.btn_selectImage);
+        repo = new UserRepository(this);
+        preferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        int id = preferences.getInt("userId", 0);
+        User user = repo.getUserById(id);
+        String emailView = user.getEmail();
+        String phoneView = user.getPhoneNumber();
+        String userView = user.getUserName();
+        String addressView = user.getAddress();
+        String roleView = "";
+        if (user.getRole_id() == 1) {
+            roleView = "user";
+        }
+        if (emailView != null || phoneView != null || userView != null || addressView != null || roleView != null) {
             inpEmail.getEditText().setText(emailView);
             inpPhone.getEditText().setText(phoneView);
             inpUser.getEditText().setText(userView);
-            inpPass.getEditText().setText(passView);
-            inpRePass.getEditText().setText(repassView);
+            inpAddress.getEditText().setText(addressView);
+            inpRole.getEditText().setText(roleView);
         }
+        String imageUriString = user.getAvatar();
+        image.setImageURI(Uri.parse(imageUriString));
 
+        selectImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iGallrey = new Intent(Intent.ACTION_PICK);
+                iGallrey.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(iGallrey, GALLERY_REQ_CODE);
+            }
+        });
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nameValue = inpName.getEditText().getText().toString();
                 String emailValue = inpEmail.getEditText().getText().toString();
                 String phoneValue = inpPhone.getEditText().getText().toString();
-                String userValue = inpUser.getEditText().getText().toString();
-                String passValue = inpPass.getEditText().getText().toString();
-                String repassValue = inpRePass.getEditText().getText().toString();
-
-                if (passValue.equals(repassValue)){
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString(KEY_NAME, inpName.getEditText().getText().toString());
-                    editor.putString(KEY_EMAIL, inpEmail.getEditText().getText().toString());
-                    editor.putString(KEY_PHONE, inpPhone.getEditText().getText().toString());
-                    editor.putString(KEY_USER, inpUser.getEditText().getText().toString());
-                    editor.putString(KEY_PASS, inpPass.getEditText().getText().toString());
-                    editor.putString(KEY_REPASS, inpRePass.getEditText().getText().toString());
-                    editor.putString("Authentication_Status","true");
-                    editor.apply();
-
-                    try{
-                        if (nameValue.equals("") ||
-                                emailValue.equals("") ||
-                                phoneValue.equals("") ||
-                                userValue.equals("") ||
-                                passValue.equals("") ||
-                                repassValue.equals("")){
-                            Toast.makeText(EditUser.this, "Data Cannot be Empty. \nData can be Exhausted.", Toast.LENGTH_LONG).show();
-                        }else{
-                            String name = preferences.getString(KEY_NAME, null);
-                            if (name != null){
-                                Toast.makeText(EditUser.this, "Successful Registration", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(EditUser.this, LoginPage.class);
-                                startActivity(intent);
-                                finish();
-                            }
-                        }
-                    }catch (Exception e){
-                        Toast.makeText(EditUser.this, "Username has been used", Toast.LENGTH_LONG).show();
-                    }
-                }else{
-                    Toast.makeText(EditUser.this, "Password doesn't match", Toast.LENGTH_LONG).show();
-                }
+                String addressValue = inpAddress.getEditText().getText().toString();
+                String imgPath = saveImageToStorage.saveImageFromImageView(image);
+                user.setEmail(emailValue);
+                user.setPhoneNumber(phoneValue);
+                user.setAddress(addressValue);
+                user.setAvatar(imgPath);
+                repo.updateUser(user);
+                Toast.makeText(EditUser.this, "Edit Profile Successfully", Toast.LENGTH_LONG).show();
             }
         });
 
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                reset();
+            public void onClick(View v) {
+                Intent intent = new Intent(EditUser.this, LoginPage.class);
+                startActivity(intent);
             }
         });
     }
 
-
-    public void reset(){
-        inpName.getEditText().setText(null);
-        inpEmail.getEditText().setText(null);
-        inpPhone.getEditText().setText(null);
-        inpUser.getEditText().setText(null);
-        inpPass.getEditText().setText(null);
-        inpRePass.getEditText().setText(null);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if(resultCode == RESULT_OK){
+            if(requestCode == GALLERY_REQ_CODE){
+                image.setImageURI(data.getData());
+                System.out.println("data: " + data.getData());
+            }
+        }
     }
 }

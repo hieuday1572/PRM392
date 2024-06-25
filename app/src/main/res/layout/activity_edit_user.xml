@@ -10,12 +10,6 @@
     android:background="@color/white"
     tools:context=".EditUser">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:src="@drawable/logo_splash"
-        android:transitionName="logo_img"/>
-
     <TextView
         android:id="@+id/tv_title_regis"
         android:layout_width="match_parent"
@@ -23,10 +17,25 @@
         android:layout_marginTop="-10dp"
         android:fontFamily="@font/aliey_regular"
         android:gravity="center"
-        android:text="Edit User"
+        android:text="Profile"
         android:textColor="@color/black"
         android:textSize="40dp"
         android:transitionName="textnameApp" />
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"/>
+
+    <Button
+        android:id="@+id/btn_selectImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:transitionName="txt_login_signup"
+        android:text="SELECT IMAGE"
+        android:backgroundTint="@color/bgColorSplash"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,14 +43,18 @@
         android:orientation="vertical"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp">
-
         <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/name_edit"
-            android:hint="Fullname"
-            app:startIconDrawable="@drawable/ic_name"
+            android:transitionName="txt_user"
+            android:id="@+id/username_edit"
+            app:startIconDrawable="@drawable/ic_user"
             app:startIconTint="@color/black"
+            android:hint="Username"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            app:counterMaxLength="15"
             android:textColorHint="@color/black"
             app:hintTextColor="@color/black"
             style="@style/LoginTextInputLayoutStyle">
@@ -51,7 +64,9 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textColor="@color/black"
-                android:paddingStart="48dp"/>
+                android:paddingStart="48dp"
+                android:focusable="false"
+                android:focusableInTouchMode="false"/>
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_marginTop="10dp"
@@ -91,16 +106,16 @@
                 android:textColor="@color/black"
                 android:paddingStart="48dp"/>
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:transitionName="txt_user"
-            android:id="@+id/username_edit"
-            app:startIconDrawable="@drawable/ic_user"
+            android:transitionName="txt_address"
+            android:id="@+id/address_edit"
+            app:startIconDrawable="@drawable/ic_email"
             app:startIconTint="@color/black"
-            android:hint="Username"
-            app:counterMaxLength="15"
+            android:hint="Address"
             android:textColorHint="@color/black"
             app:hintTextColor="@color/black"
             style="@style/LoginTextInputLayoutStyle">
@@ -116,13 +131,13 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:transitionName="txt_pass"
-            android:id="@+id/password_edit"
-            app:startIconDrawable="@drawable/ic_pass"
+            android:transitionName="txt_role"
+            android:id="@+id/role_edit"
+            app:startIconDrawable="@drawable/ic_user"
             app:startIconTint="@color/black"
-            android:hint="Password"
-            app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/black"
+            android:hint="Role"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:textColorHint="@color/black"
             app:hintTextColor="@color/black"
             style="@style/LoginTextInputLayoutStyle">
@@ -130,30 +145,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
+                android:inputType="text"
                 android:textColor="@color/black"
-                android:paddingStart="48dp"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:transitionName="txt_pass"
-            android:id="@+id/retype_password_edit"
-            app:startIconDrawable="@drawable/ic_pass"
-            app:startIconTint="@color/black"
-            android:hint="Re-Type Password"
-            app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/black"
-            android:textColorHint="@color/black"
-            app:hintTextColor="@color/black"
-            style="@style/LoginTextInputLayoutStyle">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:textColor="@color/black"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:paddingStart="48dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -170,11 +165,11 @@
         android:transitionName="txt_login_signup" />
 
     <Button
-        android:id="@+id/btn_reset"
+        android:id="@+id/btn_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:transitionName="txt_login_signup"
-        android:text="RESET"
+        android:text="BACK"
         android:backgroundTint="@color/bgColorSplash"
         android:textColor="@color/white"
         android:textStyle="bold"/>

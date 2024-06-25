@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.carbooking.Entity.User;
+import com.example.carbooking.admin.HomePageAdminActivity;
+import com.example.carbooking.helpler.SeedDatabase;
 import com.example.carbooking.repository.UserRepository;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -29,6 +31,7 @@ public class LoginPage extends AppCompatActivity {
 
     SharedPreferences preferences;
     UserRepository repo = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,9 @@ public class LoginPage extends AppCompatActivity {
         txtSignUp = findViewById(R.id.ll_signup);
         preferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         repo = new UserRepository(this);
+        //Add initial record to database
+        SeedDatabase seed = new SeedDatabase(this);
+        seed.Initialize();
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,12 +96,20 @@ public class LoginPage extends AppCompatActivity {
                     User user = repo.getUserByUsernameAndPassword(userValue, passValue);
                     if (user != null) {
                         @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = preferences.edit();
-                        editor.putInt("userId",user.getId());
+                        editor.putInt("userId", user.getId());
                         editor.apply();
-//                        Intent intent = new Intent(LoginPage.this, MainActivity.class);
-//                        startActivity(intent);
-//                        finish();
                         Toast.makeText(LoginPage.this, "Login successfully", Toast.LENGTH_LONG).show();
+                        if(user.getRole_id()==1){
+                            Intent intent = new Intent(LoginPage.this, EditUser.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else {
+                            Intent intent = new Intent(LoginPage.this, HomePageAdminActivity.class);
+                            startActivity(intent);
+                            finish();
+                            Toast.makeText(LoginPage.this, "Admin Role", Toast.LENGTH_LONG).show();
+                        }
                     } else {
                         Toast.makeText(LoginPage.this, "Username or Password doesn't match", Toast.LENGTH_LONG).show();
                     }
