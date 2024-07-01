@@ -1,7 +1,9 @@
 package com.example.carbooking.admin;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,23 +21,25 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.carbooking.LoginPage;
 import com.example.carbooking.R;
 import com.example.carbooking.admin.tour.AddTourActivity;
-import com.example.carbooking.admin.tour.EditTourActivity;
 import com.example.carbooking.admin.tour.ListTourActivity;
+import com.example.carbooking.admin.user.UserManagementActivity;
 import com.google.android.material.navigation.NavigationView;
 
 public class HomePageAdminActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageButton buttonDrawerToggle;
     NavigationView navigationView;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home_page_admin);
-
+        preferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         buttonDrawerToggle = findViewById(R.id.button_drawerToggle);
         System.out.println("buttonDrawerToggle : " + buttonDrawerToggle);
 
@@ -56,7 +60,7 @@ public class HomePageAdminActivity extends AppCompatActivity {
         adminImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(HomePageAdminActivity.this,txtUserName.getText(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomePageAdminActivity.this, txtUserName.getText(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -76,29 +80,33 @@ public class HomePageAdminActivity extends AppCompatActivity {
                     return true;
                 }
 
-                if(itemId == R.id.navAddTour){
+                if (itemId == R.id.navAddTour) {
                     Intent intent = new Intent(HomePageAdminActivity.this, AddTourActivity.class);
                     startActivity(intent);
-                }
-                else if(itemId == R.id.navEditTour){
+                } else if (itemId == R.id.navEditTour) {
                     Intent intent = new Intent(HomePageAdminActivity.this, ListTourActivity.class);
                     startActivity(intent);
                     Toast.makeText(HomePageAdminActivity.this, "Edit clicked", Toast.LENGTH_SHORT).show();
-                }
-                else if(itemId == R.id.navRemoveTour){
+                } else if (itemId == R.id.navRemoveTour) {
                     Toast.makeText(HomePageAdminActivity.this, "Remove clicked", Toast.LENGTH_SHORT).show();
-                }
-                else
-                    if(itemId == R.id.navFavorite){
+                } else if (itemId == R.id.navFavorite) {
                     Toast.makeText(HomePageAdminActivity.this, "Favorited clicked !", Toast.LENGTH_SHORT).show();
-                }
-                else if(itemId == R.id.navReport){
+                } else if (itemId == R.id.navReport) {
                     Toast.makeText(HomePageAdminActivity.this, "Report clicked", Toast.LENGTH_SHORT).show();
-                }
-                else if(itemId == R.id.navHistory){
+                } else if (itemId == R.id.navHistory) {
                     Toast.makeText(HomePageAdminActivity.this, "History clicked", Toast.LENGTH_SHORT).show();
+                } else if (itemId == R.id.nav_user_management) {
+                    Intent intent = new Intent(HomePageAdminActivity.this, UserManagementActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(HomePageAdminActivity.this, "User Management clicked", Toast.LENGTH_SHORT).show();
+                } else if (itemId == R.id.navLogout) {
+                    @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = preferences.edit();
+                    editor.clear();
+                    editor.apply();
+                    Intent intent = new Intent(HomePageAdminActivity.this, LoginPage.class);
+                    startActivity(intent);
                 }
-               drawerLayout.close();
+                drawerLayout.close();
 
 
                 return false;
@@ -113,6 +121,7 @@ public class HomePageAdminActivity extends AppCompatActivity {
         });
 
     }
+
     @SuppressLint("RestrictedApi")
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

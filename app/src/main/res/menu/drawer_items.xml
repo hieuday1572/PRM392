@@ -21,7 +21,11 @@
             </group>
         </menu>
     </item>
-
+<item
+    android:id="@+id/nav_user_management"
+    android:title="User Management"
+    android:icon="@drawable/emoji_people">
+</item>
     <group android:id="@+id/report">
         <item
             android:icon="@drawable/icon_report"
