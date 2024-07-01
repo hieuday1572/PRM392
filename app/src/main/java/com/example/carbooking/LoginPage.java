@@ -95,20 +95,25 @@ public class LoginPage extends AppCompatActivity {
                 } else {
                     User user = repo.getUserByUsernameAndPassword(userValue, passValue);
                     if (user != null) {
-                        @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = preferences.edit();
-                        editor.putInt("userId", user.getId());
-                        editor.apply();
-                        Toast.makeText(LoginPage.this, "Login successfully", Toast.LENGTH_LONG).show();
-                        if(user.getRole_id()==1){
-                            Intent intent = new Intent(LoginPage.this, EditUser.class);
-                            startActivity(intent);
-                            finish();
+                        if(user.isLocked()){
+                            Toast.makeText(LoginPage.this, "Your account was locked", Toast.LENGTH_LONG).show();
                         }
                         else {
-                            Intent intent = new Intent(LoginPage.this, HomePageAdminActivity.class);
-                            startActivity(intent);
-                            finish();
-                            Toast.makeText(LoginPage.this, "Admin Role", Toast.LENGTH_LONG).show();
+                            @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = preferences.edit();
+                            editor.putInt("userId", user.getId());
+                            editor.apply();
+                            Toast.makeText(LoginPage.this, "Login successfully", Toast.LENGTH_LONG).show();
+                            if(user.getRole_id()==1){
+                                Intent intent = new Intent(LoginPage.this, EditUser.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                            else {
+                                Intent intent = new Intent(LoginPage.this, HomePageAdminActivity.class);
+                                startActivity(intent);
+                                finish();
+                                Toast.makeText(LoginPage.this, "Admin Role", Toast.LENGTH_LONG).show();
+                            }
                         }
                     } else {
                         Toast.makeText(LoginPage.this, "Username or Password doesn't match", Toast.LENGTH_LONG).show();

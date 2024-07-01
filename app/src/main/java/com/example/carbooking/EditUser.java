@@ -62,8 +62,13 @@ public class EditUser extends AppCompatActivity {
             inpRole.getEditText().setText(roleView);
         }
         String imageUriString = user.getAvatar();
-        image.setImageURI(Uri.parse(imageUriString));
-
+        assert imageUriString != null;
+        if(imageUriString.isEmpty()){
+            image.setImageResource(R.drawable.ic_user);
+        }
+        else {
+            image.setImageURI(Uri.parse(imageUriString));
+        }
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
