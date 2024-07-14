@@ -32,7 +32,7 @@ public class Order {
     private int numberOfPerson;
     @NotNull
     @ColumnInfo(name = "departureDay")
-    private int departureDay;
+    private Date departureDay;
     @NotNull
     @ColumnInfo(name = "totalFee")
     private double totalFee;
@@ -71,11 +71,11 @@ public class Order {
         this.numberOfPerson = numberOfPerson;
     }
 
-    public int getDepartureDay() {
+    public Date getDepartureDay() {
         return departureDay;
     }
 
-    public void setDepartureDay(int departureDay) {
+    public void setDepartureDay(Date departureDay) {
         this.departureDay = departureDay;
     }
 

@@ -1,3 +1,5 @@
+
+
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
@@ -19,6 +21,10 @@
         <activity
             android:name=".admin.user.UserDetailsActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".TourBooking"
+            android:exported="true" />
         <activity
             android:name=".admin.user.UserManagementActivity"
             android:exported="false" />
@@ -74,9 +80,6 @@
             android:name=".OrderTour.OrderDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".OrderTour.ListOrder"
-            android:exported="true" />
-        <activity
             android:name=".LoginPage"
             android:exported="true">
             <intent-filter>
@@ -85,6 +88,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".OrderTour.ListOrder"
+            android:exported="true">
+        </activity>
     </application>
+
 
 </manifest>

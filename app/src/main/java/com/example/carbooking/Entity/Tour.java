@@ -9,14 +9,16 @@ import androidx.room.PrimaryKey;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity(tableName = "Tour",
         foreignKeys = {
                 @ForeignKey(entity = Category.class, parentColumns = "id", childColumns = "categoryId"),
                 @ForeignKey(entity = Vehicle.class, parentColumns = "id", childColumns = "vehicle")
         })
-public class Tour {
+public class Tour implements Serializable {
     @NotNull
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -246,5 +248,18 @@ public class Tour {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tour tour = (Tour) o;
+        return id == tour.id && dateNumber == tour.dateNumber && Double.compare(pricePerPerson, tour.pricePerPerson) == 0 && vehicle == tour.vehicle && categoryId == tour.categoryId && votedNumber == tour.votedNumber && voteScore == tour.voteScore && isAvaliable == tour.isAvaliable && Objects.equals(tile, tour.tile) && Objects.equals(locationFrom, tour.locationFrom) && Objects.equals(locationTo, tour.locationTo) && Objects.equals(tourTime, tour.tourTime) && Objects.equals(description, tour.description) && Objects.equals(tourSchdule, tour.tourSchdule) && Objects.equals(contactNumber, tour.contactNumber) && Objects.equals(image, tour.image);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, tile, locationFrom, locationTo, tourTime, dateNumber, description, tourSchdule, pricePerPerson, vehicle, categoryId, votedNumber, voteScore, isAvaliable, contactNumber, image);
     }
 }

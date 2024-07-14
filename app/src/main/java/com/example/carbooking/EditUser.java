@@ -96,8 +96,9 @@ public class EditUser extends AppCompatActivity {
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EditUser.this, LoginPage.class);
-                startActivity(intent);
+                finish();
+//                Intent intent = new Intent(EditUser.this, LoginPage.class);
+//                startActivity(intent);
             }
         });
     }
