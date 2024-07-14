@@ -74,16 +74,10 @@
             android:name=".OrderTour.OrderDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginPage"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".OrderTour.ListOrder"
+            android:exported="true" />
+        <activity
+            android:name=".LoginPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
