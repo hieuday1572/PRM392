@@ -23,6 +23,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.carbooking.LoginPage;
 import com.example.carbooking.R;
+import com.example.carbooking.admin.order.OrderManagement;
 import com.example.carbooking.admin.tour.AddTourActivity;
 import com.example.carbooking.admin.tour.ListTourActivity;
 import com.example.carbooking.admin.user.UserManagementActivity;
@@ -91,6 +92,8 @@ public class HomePageAdminActivity extends AppCompatActivity {
                     Toast.makeText(HomePageAdminActivity.this, "Remove clicked", Toast.LENGTH_SHORT).show();
                 }  else if (itemId == R.id.navReport) {
                     Toast.makeText(HomePageAdminActivity.this, "Order Management clicked", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePageAdminActivity.this, OrderManagement.class);
+                    startActivity(intent);
                 } else if (itemId == R.id.nav_user_management) {
                     Toast.makeText(HomePageAdminActivity.this, "User Management clicked", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(HomePageAdminActivity.this, UserManagementActivity.class);

@@ -3,6 +3,7 @@ package com.example.carbooking.helpler;
 import android.content.Context;
 
 import com.example.carbooking.Entity.Category;
+import com.example.carbooking.Entity.Order;
 import com.example.carbooking.Entity.Role;
 import com.example.carbooking.Entity.Tour;
 import com.example.carbooking.Entity.User;
@@ -89,6 +90,9 @@ public class SeedDatabase {
                 tour.setAvaliable(new Random().nextBoolean());
                 tourRepository.createTour(tour);
             }
+        }
+
+        if(orderRepository.getAllOrder().isEmpty()){
         }
     }
 }
