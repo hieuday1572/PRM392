@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -61,49 +61,62 @@
                 android:orientation="horizontal"
                 android:background="@color/bgColorSplash">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Detail User"
-                    android:textSize="20dp"
-                    android:fontFamily="sans-serif-black"
-                    android:textColor="@color/white"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="5dp"
 
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_Tittle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="sans-serif"
-                        android:text="Name"
+                        android:text="Summer Tour"
                         android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:textSize="16dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tv_startLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="sans-serif"
-                        android:text="Email"
+                        android:text="Ha Noi"
                         android:textColor="@color/white"
                         android:textSize="15dp" />
 
+                        <TextView
+                        android:id="@+id/tv_endLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="sans-serif"
+                        android:text=" - Nha Trang"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+
+                    </LinearLayout>
+
                     <TextView
+                        android:id="@+id/tv_tourTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="Phone"
+                        android:text="In 3 days"
                         android:textColor="@color/white"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -112,36 +125,44 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/name"
+                        android:id="@+id/tv_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="sans-serif-black"
-                        android:text="Name"
+                        android:text="$1200/person"
                         android:textColor="@color/white"
                         android:textSize="15dp" />
 
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
                     <TextView
-                        android:id="@+id/email"
+                        android:id="@+id/tv_voteScore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="sans-serif-black"
-                        android:text="Email"
+                        android:text="4.7* "
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                        <TextView
+                        android:id="@+id/tv_voteNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="(123)"
                         android:textColor="@color/white"
                         android:textSize="15dp" />
 
-                    <TextView
-                        android:id="@+id/phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-black"
-                        android:text="Phone"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
+                    </LinearLayout>
+
                 </LinearLayout>
             </LinearLayout>
 
@@ -154,8 +175,8 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Detail Tour"
+                    android:layout_height="5dp"
+
                     android:textSize="20dp"
                     android:fontFamily="sans-serif-black"
                     android:textColor="@color/white"/>
@@ -163,115 +184,192 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_marginBottom="50dp"
-                android:orientation="horizontal">
+                android:padding="15dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Description"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Bai bien nha trang rat dep"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="sans-serif-black"
+                            android:text="Transportation"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                        <TextView
+                            android:id="@+id/tv_transportation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="sans-serif-black"
+                            android:text="Bus"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="sans-serif-black"
+                            android:text="Contact"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                        <TextView
+                            android:id="@+id/tv_contact"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="sans-serif-black"
+                            android:text="0971885801"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/teal_700">
                     <TextView
+                        android:id="@+id/tv_startDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:fontFamily="sans-serif"
-                        android:text="Name Tour"
+                        android:fontFamily="sans-serif-black"
+                        android:text="12-07-2024"
                         android:textColor="@color/white"
-                        android:textSize="15dp" />
-
+                        android:textSize="15dp"
+                        android:paddingTop="5dp"/>
                     <TextView
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:fontFamily="sans-serif"
-                        android:text="Total People"
+                        android:fontFamily="sans-serif-black"
+                        android:text="     -     "
                         android:textColor="@color/white"
                         android:textSize="15dp" />
-
                     <TextView
+                        android:id="@+id/tv_endDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
-                        android:text="Price Tour"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="12-07-2024"
                         android:textColor="@color/white"
                         android:textSize="15dp" />
                 </LinearLayout>
 
+                <Button
+                    android:id="@+id/btn_selectDate"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:backgroundTint="@color/black"
+                    android:text="Select Date"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginBottom="10dp"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:orientation="vertical">
+                    android:gravity="center_horizontal"
+                    android:layout_marginBottom="5dp">
+
+                    <Button
+                        android:id="@+id/btn_subCount"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:backgroundTint="@color/bgColorSplash"
+                        android:text="─"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/name_tour"
+                        android:id="@+id/txt_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="sans-serif-black"
-                        android:text="Name Tour"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="count"
                         android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/total_people"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="sans-serif-black"
-                        android:text="Total People"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
+                    <Button
+                        android:id="@+id/btn_addCount"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:backgroundTint="@color/bgColorSplash"
+                        android:text="＋"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="0dp"
+                    android:gravity="center">
 
                     <TextView
                         android:id="@+id/price_tour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-black"
                         android:text="Price Tour"
+                        android:textSize="18dp"
                         android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:fontFamily="sans-serif-black"/>
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
-                        android:text="Total"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/total_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-black"
-                        android:text="Total Price"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-                </LinearLayout>
-            </LinearLayout>
 
             <Button
                 android:id="@+id/btn_confirm"

@@ -30,22 +30,10 @@
         <item
             android:icon="@drawable/icon_report"
             android:id="@+id/navReport"
-            android:title="Report"/>
-        <item
-            android:icon="@drawable/icon_history"
-            android:id="@+id/navHistory"
-            android:title="History"/>
-        <item
-            android:icon="@drawable/icon_money"
-            android:id="@+id/profit"
-            android:title="Profit"/>
+            android:title="Order Management"/>
     </group>
 
     <group android:id="@+id/common">
-        <item
-            android:icon="@drawable/icon_favorite"
-            android:id="@+id/navFavorite"
-            android:title="Favorite"/>
         <item
             android:icon="@drawable/icon_logout"
             android:id="@+id/navLogout"
