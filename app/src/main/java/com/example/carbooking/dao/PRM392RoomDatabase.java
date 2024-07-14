@@ -39,7 +39,7 @@ public abstract class PRM392RoomDatabase extends RoomDatabase {
                 INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                 PRM392RoomDatabase.class, DB_NAME)
                         .allowMainThreadQueries()
-                        .addMigrations(MIGRATION_4_5)
+                        .addMigrations()
                         .fallbackToDestructiveMigrationFrom()
                         .enableMultiInstanceInvalidation()
                         .build();

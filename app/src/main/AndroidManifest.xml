@@ -1,5 +1,3 @@
-
-
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
@@ -24,13 +22,19 @@
 
         <activity
             android:name=".TourBooking"
-            android:exported="true" />
+            android:exported="false" />
+        <activity
+            android:name=".admin.order.OrderManagement"
+            android:exported="false" />
+        <activity
+            android:name=".admin.order.OrderDetail"
+            android:exported="false" />
         <activity
             android:name=".admin.user.UserManagementActivity"
             android:exported="false" />
         <activity
             android:name=".admin.vehicle.ListVehicleActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".NewPassword"
             android:exported="false" />
@@ -39,46 +43,46 @@
             android:exported="false" />
         <activity
             android:name=".admin.vehicle.DeleteVehicleActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".admin.vehicle.EditVehicleActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".admin.vehicle.AddVehicleActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".admin.category.ListCategoryActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".admin.category.DeleteCategoryActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".admin.category.EditCategoryActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".admin.category.AddCategoryActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".admin.tour.ListTourActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".admin.tour.EditTourActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".admin.tour.AddTourActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".admin.HomePageAdminActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".SignUp"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".EditUser"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".OrderTour.OrderDetailActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".LoginPage"
             android:exported="true">
@@ -90,7 +94,7 @@
         </activity>
         <activity
             android:name=".OrderTour.ListOrder"
-            android:exported="true">
+            android:exported="false">
         </activity>
     </application>
 

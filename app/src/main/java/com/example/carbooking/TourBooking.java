@@ -181,7 +181,7 @@ public class TourBooking extends AppCompatActivity {
             order.setTourId(firstTour.getId());
             order.setUserId(userId);
             order.setNumberOfPerson(mCount);
-            order.setDepartureDay((int) (startDate.getTime() / (1000 * 60 * 60 * 24)));
+//            order.setDepartureDay((int) (startDate.getTime() / (1000 * 60 * 60 * 24)));
             order.setTotalFee(basePrice * mCount);
             order.setStatusId(1);
             order.setOrderDate(orderDate);
