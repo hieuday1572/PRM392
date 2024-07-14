@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 
 import com.bumptech.glide.Glide;
+import com.example.carbooking.EditUser;
 import com.example.carbooking.Entity.User;
 import com.example.carbooking.LoginPage;
 import com.example.carbooking.R;
@@ -69,11 +70,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         binding.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         // Set user info
+        HeaderHomeNavigationBinding headerBinding = HeaderHomeNavigationBinding
+                .bind(binding.navView.getHeaderView(0));
         int userId = preferences.getInt("userId", -1);
         User user = userRepository.getUserById(userId);
         if (user != null) {
-            HeaderHomeNavigationBinding headerBinding = HeaderHomeNavigationBinding
-                    .bind(binding.navView.getHeaderView(0));
             Glide.with(this)
                     .load(user.getAvatar())
                     .error(R.drawable.ic_user)
@@ -81,6 +82,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             headerBinding.textUsername.setText(user.getUserName());
             headerBinding.textEmail.setText(user.getEmail());
         }
+
+        // Set listeners
+        headerBinding.viewInfo.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, EditUser.class);
+            startActivity(intent);
+            binding.drawerLayout.closeDrawer(GravityCompat.START);
+        });
     }
 
     @Override
