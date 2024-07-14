@@ -19,6 +19,10 @@
         <activity
             android:name=".admin.user.UserDetailsActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".TourBooking"
+            android:exported="true" />
         <activity
             android:name=".admin.user.UserManagementActivity"
             android:exported="false" />
