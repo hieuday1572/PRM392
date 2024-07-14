@@ -19,6 +19,7 @@ import com.example.carbooking.Entity.User;
 import com.example.carbooking.admin.HomePageAdminActivity;
 import com.example.carbooking.helpler.SeedDatabase;
 import com.example.carbooking.repository.UserRepository;
+import com.example.carbooking.user.HomeActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginPage extends AppCompatActivity {
@@ -104,7 +105,7 @@ public class LoginPage extends AppCompatActivity {
                             editor.apply();
                             Toast.makeText(LoginPage.this, "Login successfully", Toast.LENGTH_LONG).show();
                             if(user.getRole_id()==1){
-                                Intent intent = new Intent(LoginPage.this, EditUser.class);
+                                Intent intent = new Intent(LoginPage.this, HomeActivity.class);
                                 startActivity(intent);
                                 finish();
                             }

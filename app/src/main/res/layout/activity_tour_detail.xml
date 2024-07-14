@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    tools:ignore="ContentDescription">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        tools:context=".admin.tour.DetailTourActivity"
+        tools:ignore="HardcodedText">
+
+        <ImageView
+            android:id="@+id/image_tour_detail"
+            android:layout_width="0dp"
+            android:layout_height="220dp"
+            android:background="@drawable/bg_detail_image"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/icon_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_back"
+            android:src="@drawable/ic_chevron_left"
+            app:layout_constraintStart_toStartOf="@id/image_tour_detail"
+            app:layout_constraintTop_toTopOf="@id/image_tour_detail"
+            app:tint="@color/white"
+            tools:layout_editor_absoluteY="22dp" />
+
+        <ImageView
+            android:id="@+id/icon_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_back"
+            android:src="@drawable/ic_share"
+            app:layout_constraintBottom_toBottomOf="@id/icon_favorite"
+            app:layout_constraintEnd_toStartOf="@id/icon_favorite"
+            app:layout_constraintTop_toTopOf="@id/icon_favorite"
+            app:tint="@color/white"
+            tools:layout_editor_absoluteY="22dp" />
+
+        <ImageView
+            android:id="@+id/icon_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_back"
+            android:src="@drawable/ic_favorite_border"
+            app:layout_constraintEnd_toEndOf="@id/image_tour_detail"
+            app:layout_constraintTop_toTopOf="@id/image_tour_detail"
+            app:tint="@color/white"
+            tools:layout_editor_absoluteY="22dp" />
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="#333333"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_tour_detail"
+            tools:text="Luna Leak Luna Leak Luna Leak Luna Leak " />
+
+        <ImageView
+            android:id="@+id/iconLocFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_location"
+            app:layout_constraintBottom_toBottomOf="@+id/textFrom"
+            app:layout_constraintStart_toStartOf="@+id/textTitle"
+            app:layout_constraintTop_toTopOf="@+id/textFrom"
+            app:tint="#636363" />
+
+        <TextView
+            android:id="@+id/textFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="Australia"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/iconLocFrom"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <ImageView
+            android:id="@+id/iconLocTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_location"
+            app:layout_constraintBottom_toBottomOf="@+id/textTo"
+            app:layout_constraintEnd_toStartOf="@+id/textTo"
+            app:layout_constraintTop_toTopOf="@+id/textTo"
+            app:tint="#636363" />
+
+        <TextView
+            android:id="@+id/textTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Vietnam"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textFrom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textFrom" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#BDBDBD"
+            app:layout_constraintBottom_toBottomOf="@+id/textFrom"
+            app:layout_constraintEnd_toStartOf="@+id/iconLocTo"
+            app:layout_constraintStart_toEndOf="@+id/textFrom"
+            app:layout_constraintTop_toTopOf="@+id/textFrom" />
+
+        <TextView
+            android:id="@+id/labelTourTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="Tour time"
+            android:textColor="#333333"
+            app:layout_constraintStart_toStartOf="@+id/textTitle"
+            app:layout_constraintTop_toBottomOf="@+id/iconLocFrom" />
+
+        <TextView
+            android:id="@+id/labelDateNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Number of days"
+            android:textColor="#333333"
+            app:layout_constraintStart_toStartOf="@+id/textTitle"
+            app:layout_constraintTop_toBottomOf="@+id/labelTourTime" />
+
+        <TextView
+            android:id="@+id/labelTourSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Tour schedule"
+            android:textColor="#333333"
+            app:layout_constraintStart_toStartOf="@+id/textTitle"
+            app:layout_constraintTop_toBottomOf="@+id/labelDateNumber" />
+
+        <TextView
+            android:id="@+id/textPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="156VNĐ/"
+            android:textColor="#333333"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textView19"
+            app:layout_constraintEnd_toStartOf="@+id/labelPrice"
+            app:layout_constraintTop_toTopOf="@+id/textView19" />
+
+        <TextView
+            android:id="@+id/labelPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Person"
+            android:textColor="#424242"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textPrice"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textTourTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="12PM 2024-07-15"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/labelTourTime"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/labelTourTime" />
+
+        <TextView
+            android:id="@+id/textTourDateNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="14 days"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/labelDateNumber"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/labelDateNumber" />
+
+        <TextView
+            android:id="@+id/textTourSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="2024-07-14 - 2024-07-28"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/labelTourSchedule"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/labelTourSchedule" />
+
+        <TextView
+            android:id="@+id/labelTourContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Contact"
+            android:textColor="#333333"
+            app:layout_constraintStart_toStartOf="@+id/textTitle"
+            app:layout_constraintTop_toBottomOf="@+id/labelTourSchedule" />
+
+        <TextView
+            android:id="@+id/textContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="0987654321"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/labelTourContact"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/labelTourContact" />
+
+        <TextView
+            android:id="@+id/labelTourCategor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Category"
+            android:textColor="#333333"
+            app:layout_constraintStart_toStartOf="@+id/textTitle"
+            app:layout_constraintTop_toBottomOf="@+id/labelTourContact" />
+
+        <TextView
+            android:id="@+id/textCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Domestic"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/labelTourCategor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/labelTourCategor" />
+
+        <TextView
+            android:id="@+id/labelTourVehicle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Vehicle"
+            android:textColor="#333333"
+            app:layout_constraintStart_toStartOf="@+id/textTitle"
+            app:layout_constraintTop_toBottomOf="@+id/labelTourCategor" />
+
+        <TextView
+            android:id="@+id/textVehicle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Bus"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/labelTourVehicle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/labelTourVehicle" />
+
+        <TextView
+            android:id="@+id/labelDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Descriptions"
+            android:textColor="#333333"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textTitle"
+            app:layout_constraintTop_toBottomOf="@+id/labelTourVehicle" />
+
+        <TextView
+            android:id="@+id/textDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:text="Với tour du lịch này, bạn sẽ được khám phá các thắng cảnh ở Đà Nẵng về đêm trong lúc du thuyền dọc sông Hàn.
+Sau khi đến bến cảng, bạn sẽ lên thuyền để bắt đầu hành trình xuôi theo con sông. Xuyên suốt chuyến đi, bạn sẽ được ngắm nhìn quang cảnh thành phố và một số địa danh, bao gồm Cầu Tình yêu và Vòng quay Sun Wheel. Bạn cũng sẽ có cơ hội thưởng thức nhạc sống, biểu diễn ngay trên boong tàu."
+            android:textColor="#333333"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/labelDescription"
+            app:layout_constraintTop_toBottomOf="@+id/labelDescription" />
+
+        <LinearLayout
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/textTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textTitle">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_star"
+                app:tint="#FFC107" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_star"
+                app:tint="#FFC107" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_star"
+                app:tint="#FFC107" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_star"
+                app:tint="#FFC107" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_half_star"
+                app:tint="#FFC107" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="FROM"
+            android:textColor="#333333"
+            app:layout_constraintStart_toStartOf="@+id/textTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TO"
+            android:textColor="#333333"
+            app:layout_constraintEnd_toEndOf="@+id/textTo"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
