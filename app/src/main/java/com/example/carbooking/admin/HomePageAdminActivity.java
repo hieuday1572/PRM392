@@ -89,16 +89,12 @@ public class HomePageAdminActivity extends AppCompatActivity {
                     Toast.makeText(HomePageAdminActivity.this, "Edit clicked", Toast.LENGTH_SHORT).show();
                 } else if (itemId == R.id.navRemoveTour) {
                     Toast.makeText(HomePageAdminActivity.this, "Remove clicked", Toast.LENGTH_SHORT).show();
-                } else if (itemId == R.id.navFavorite) {
-                    Toast.makeText(HomePageAdminActivity.this, "Favorited clicked !", Toast.LENGTH_SHORT).show();
-                } else if (itemId == R.id.navReport) {
-                    Toast.makeText(HomePageAdminActivity.this, "Report clicked", Toast.LENGTH_SHORT).show();
-                } else if (itemId == R.id.navHistory) {
-                    Toast.makeText(HomePageAdminActivity.this, "History clicked", Toast.LENGTH_SHORT).show();
+                }  else if (itemId == R.id.navReport) {
+                    Toast.makeText(HomePageAdminActivity.this, "Order Management clicked", Toast.LENGTH_SHORT).show();
                 } else if (itemId == R.id.nav_user_management) {
+                    Toast.makeText(HomePageAdminActivity.this, "User Management clicked", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(HomePageAdminActivity.this, UserManagementActivity.class);
                     startActivity(intent);
-                    Toast.makeText(HomePageAdminActivity.this, "User Management clicked", Toast.LENGTH_SHORT).show();
                 } else if (itemId == R.id.navLogout) {
                     @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = preferences.edit();
                     editor.clear();
