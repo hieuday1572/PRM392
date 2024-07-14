@@ -7,12 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:openDrawer="start"
-    tools:context=".admin.HomePageAdminActivity"
-    >
+    tools:context=".admin.HomePageAdminActivity">
 
     <include layout="@layout/activity_main_content_admin"/>
-
-
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationViewAdmin"
