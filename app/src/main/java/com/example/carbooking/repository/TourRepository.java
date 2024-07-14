@@ -52,6 +52,6 @@ public class TourRepository {
                 tourDao.update(tour);
             }
         });
-        return true; // Return true assuming success; you might want to handle error cases
+        return true;
     }
 }

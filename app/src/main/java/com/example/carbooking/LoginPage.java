@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.carbooking.Entity.User;
+import com.example.carbooking.OrderTour.ListOrder;
 import com.example.carbooking.admin.HomePageAdminActivity;
 import com.example.carbooking.helpler.SeedDatabase;
 import com.example.carbooking.repository.UserRepository;
@@ -104,6 +105,7 @@ public class LoginPage extends AppCompatActivity {
                             editor.apply();
                             Toast.makeText(LoginPage.this, "Login successfully", Toast.LENGTH_LONG).show();
                             if(user.getRole_id()==1){
+
                                 Intent intent = new Intent(LoginPage.this, HomeActivity.class);
                                 startActivity(intent);
                                 finish();

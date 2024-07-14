@@ -14,8 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.carbooking.Entity.Order;
 import com.example.carbooking.Entity.Tour;
+import com.example.carbooking.Entity.User;
 import com.example.carbooking.OrderTour.OrderDetailActivity;
 import com.example.carbooking.R;
+import com.example.carbooking.repository.TourRepository;
+import com.example.carbooking.repository.UserRepository;
 
 import java.util.List;
 
@@ -23,11 +26,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
     private Context context;
     private List<Order> orderList;
-    private List<Tour> tourList;
+    private TourRepository tourRepository;
+    private UserRepository userRepository;
 
     public OrderAdapter(Context context, List<Order> orderList) {
         this.context = context;
         this.orderList = orderList;
+        this.userRepository = new UserRepository(context);
+        this.tourRepository = new TourRepository(context);
     }
 
     @NonNull
@@ -40,9 +46,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
         Order order = orderList.get(position);
+        User user = userRepository.getUserById(order.getUserId());
+        Tour tour = tourRepository.getTour(order.getTourId());
 
         // Hiển thị dữ liệu trong ViewHolder
-        holder.nameTour.setText("Tour: " + order.getTourId());
+        holder.nameTour.setText("" + tour.getTile());
         holder.statusTour.setText("Status: " + (order.getStatusId() == 1 ? "Completed" : "Pending"));
         holder.priceTour.setText("Price: " + order.getTotalFee());
 
@@ -50,10 +58,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         holder.btnHistoryDetail.setOnClickListener(view -> {
             Intent intent = new Intent(context, OrderDetailActivity.class);
             intent.putExtra("orderId", order.getId());
-            intent.putExtra("tourId", order.getTourId());
+            intent.putExtra("tourId",tour.getId());
+            intent.putExtra("tourName", tour.getTile());
             intent.putExtra("fee", order.getTotalFee());
             intent.putExtra("statusId", order.getStatusId());
-            intent.putExtra("userId", order.getUserId());
+            intent.putExtra("userName", user.getUserName());
             intent.putExtra("numPer", order.getNumberOfPerson());
             intent.putExtra("orderDay", order.getOrderDate());
             intent.putExtra("departDay", order.getDepartureDay());

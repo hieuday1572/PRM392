@@ -7,6 +7,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.carbooking.Entity.Order;
+import com.example.carbooking.Entity.User;
 
 import java.util.List;
 @Dao
@@ -25,4 +26,8 @@ public interface OrderDao {
 
     @Query("DELETE FROM `Order`")
     void deleteAll();
+
+
+    @Query("SELECT * FROM `Order` WHERE userId =:userId")
+    List<Order> getOrdersByUserId(int userId);
 }
