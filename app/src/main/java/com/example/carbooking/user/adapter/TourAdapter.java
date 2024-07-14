@@ -3,6 +3,7 @@ package com.example.carbooking.user.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -46,23 +47,27 @@ public class TourAdapter extends ListAdapter<Tour, TourAdapter.TourViewHolder> {
 
         @SuppressLint("SetTextI18n")
         public void bind(Tour tour) {
-            Context context = binding.getRoot().getContext();
+            try {
+                Context context = binding.getRoot().getContext();
 
-            // Bind data
-            Glide.with(context)
-                    .load(tour.getImage())
-                    .error(R.drawable.placeholder)
-                    .into(binding.imageTour);
-            binding.textTitle.setText(tour.getTile());
-            binding.textLocation.setText(tour.getLocationTo());
-            binding.textPrice.setText(FormatUtils.formatCurrency(tour.getPricePerPerson()) + " VNĐ/person");
+                // Bind data
+                Glide.with(context)
+                        .load(tour.getImage())
+                        .error(R.drawable.placeholder)
+                        .into(binding.imageTour);
+                binding.textTitle.setText(tour.getTile());
+                binding.textLocation.setText(tour.getLocationTo());
+                binding.textPrice.setText(FormatUtils.formatCurrency(tour.getPricePerPerson()) + "đ");
 
-            // Set listeners
-            binding.getRoot().setOnClickListener(v -> {
-                Intent intent = new Intent(context, TourDetailActivity.class);
-                intent.putExtra(TourDetailActivity.KEY_TOUR, tour);
-                context.startActivity(intent);
-            });
+                // Set listeners
+                binding.getRoot().setOnClickListener(v -> {
+                    Intent intent = new Intent(context, TourDetailActivity.class);
+                    intent.putExtra(TourDetailActivity.KEY_TOUR, tour);
+                    context.startActivity(intent);
+                });
+            } catch (Exception e) {
+                Log.d("TAG", "[TourAdapter.TourViewHolder.bind()] Error while binding data: " + e.getMessage());
+            }
         }
     }
 

@@ -2,6 +2,7 @@ package com.example.carbooking.user;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,31 +29,35 @@ public class TourDetailActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void populateData() {
-        Tour tour = (Tour) getIntent().getSerializableExtra(KEY_TOUR);
-        if (tour == null) return;
+        try {
+            Tour tour = (Tour) getIntent().getSerializableExtra(KEY_TOUR);
+            if (tour == null) return;
 
-        // Bind data
-        Glide.with(this)
-                .load(tour.getImage())
-                .error(R.drawable.placeholder)
-                .into(binding.imageTourDetail);
-        binding.textTitle.setText(tour.getTile());
-        binding.textPrice.setText(FormatUtils.formatCurrency(tour.getPricePerPerson()) + "VNĐ/");
-        binding.textFrom.setText(tour.getLocationFrom());
-        binding.textTo.setText(tour.getLocationTo());
-        binding.textTourTime.setText(tour.getTourTime());
-        binding.textTourDateNumber.setText(tour.getDateNumber() + "");
-        binding.textTourSchedule.setText(tour.getTourSchdule());
-        binding.textContact.setText(tour.getContactNumber());
-        binding.textDescription.setText(tour.getDescription());
+            // Bind data
+            Glide.with(this)
+                    .load(tour.getImage())
+                    .error(R.drawable.placeholder)
+                    .into(binding.imageTourDetail);
+            binding.textTitle.setText(tour.getTile());
+            binding.textPrice.setText(FormatUtils.formatCurrency(tour.getPricePerPerson()) + "đ/");
+            binding.textFrom.setText(tour.getLocationFrom());
+            binding.textTo.setText(tour.getLocationTo());
+            binding.textTourTime.setText(tour.getTourTime());
+            binding.textTourDateNumber.setText(tour.getDateNumber() + "");
+            binding.textTourSchedule.setText(tour.getTourSchdule());
+            binding.textContact.setText(tour.getContactNumber());
+            binding.textDescription.setText(tour.getDescription());
 
-        // Bind category and vehicle
-        String categoryName = new CategoryRepository(this).getCategory(tour.getCategoryId()).getCategoryName();
-        String vehicleName = new VehicleRepository(this).getVehicle(tour.getVehicle()).getVehicleName();
-        binding.textCategory.setText(categoryName);
-        binding.textVehicle.setText(vehicleName);
+            // Bind category and vehicle
+            String categoryName = new CategoryRepository(this).getCategory(tour.getCategoryId()).getCategoryName();
+            String vehicleName = new VehicleRepository(this).getVehicle(tour.getVehicle()).getVehicleName();
+            binding.textCategory.setText(categoryName);
+            binding.textVehicle.setText(vehicleName);
 
-        // Set listeners
-        binding.iconBack.setOnClickListener(v -> finish());
+            // Set listeners
+            binding.iconBack.setOnClickListener(v -> finish());
+        } catch (Exception e) {
+            Log.d("TAG", "[TourDetailActivity] Error while populating data: " + e.getMessage());
+        }
     }
 }

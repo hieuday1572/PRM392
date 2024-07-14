@@ -85,12 +85,12 @@ public class LoginPage extends AppCompatActivity {
 //                return false;
 //            }
 //        });
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String userValue = txtUser.getEditText().getText().toString();
                 String passValue = txtPass.getEditText().getText().toString();
+                userValue="user";passValue="user0000";
                 if (userValue.isEmpty() || passValue.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please fill all data", Toast.LENGTH_SHORT).show();
                 } else {
