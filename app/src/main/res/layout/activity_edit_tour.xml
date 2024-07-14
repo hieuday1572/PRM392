@@ -29,7 +29,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="40dp"
-                    android:text="ADD TOUR"
+                    android:text="EDIT TOUR"
                     android:textSize="40dp"
                     android:textStyle="bold" />
             </LinearLayout>
