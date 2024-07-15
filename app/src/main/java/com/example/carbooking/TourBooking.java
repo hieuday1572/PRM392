@@ -2,7 +2,9 @@ package com.example.carbooking;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +25,8 @@ import com.example.carbooking.Entity.User;
 import com.example.carbooking.repository.OrderRepository;
 import com.example.carbooking.repository.TourRepository;
 import com.example.carbooking.repository.UserRepository;
+import com.example.carbooking.user.HomeActivity;
+import com.example.carbooking.user.TourDetailActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -33,15 +37,16 @@ public class TourBooking extends AppCompatActivity {
     private TourRepository tourRepository = null;
     private UserRepository userRepository = null;
     private OrderRepository orderRepository = null;
-    Button addCount, subCount, btnbooKing, btnSelectDate;
+    Button addCount, subCount, btnbooKing, btnSelectDate, btnHome;
     int mCount=1;
     TextView txtCount, tvTitle, tvLocationFrom, tvLocationTo, tvTourTime, tvDescription,
             tvTourNumber, tvPricePerPerson, tvVoteScore, tvVoteNumber, tvContactNumber, priceTour, tvStartDate, tvEndDate;
     ImageView imgTour;
     double basePrice = 0.0;
-    int dateNumber, userId = 1;
+    int dateNumber, userId, tourId;
     SharedPreferences preferences;
-    Tour firstTour;
+    Tour tourList;
+    String imageUriString = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,11 +60,17 @@ public class TourBooking extends AppCompatActivity {
         tourRepository = new TourRepository(this);
         userRepository = new UserRepository(this);
         orderRepository = new OrderRepository(this);
-        List<Tour> tourList = tourRepository.getAllTour();
+        // Nhận tour ID từ Intent
+        Intent intent = getIntent();
+        if (intent != null) {
+            tourId =  intent.getIntExtra(TourDetailActivity.KEY_TOUR_ID, -1);
+        }
+
+        tourList = tourRepository.getTour(tourId);
         preferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         int id = preferences.getInt("userId", 0);
-//        User user = userRepository.getUserById(id);
-//        userId = user.getId();
+        User user = userRepository.getUserById(id);
+        userId = user.getId();
 
 
         txtCount = findViewById(R.id.txt_count);
@@ -73,31 +84,34 @@ public class TourBooking extends AppCompatActivity {
         tvPricePerPerson = findViewById(R.id.tv_price);
         tvVoteScore = findViewById(R.id.tv_voteScore);
         tvVoteNumber = findViewById(R.id.tv_voteNumber);
-        tvContactNumber = findViewById(R.id.tv_contact);
+//        tvContactNumber = findViewById(R.id.tv_contact);
         imgTour = findViewById(R.id.img_tour);
         priceTour = findViewById(R.id.price_tour);
         tvStartDate = findViewById(R.id.tv_startDate);
         tvEndDate = findViewById(R.id.tv_endDate);
         btnSelectDate = findViewById(R.id.btn_selectDate);
         btnbooKing = findViewById(R.id.btn_confirm);
+        btnHome = findViewById(R.id.btn_home);
 
-        if (!tourList.isEmpty()) {
+        if (tourList != null) {
+            if(tourList.getImage()!=null){
+                imageUriString = tourList.getImage();
+            }
+            imgTour.setImageURI(Uri.parse(imageUriString));
+            basePrice = tourList.getPricePerPerson();
+            dateNumber = tourList.getDateNumber();
 
-            firstTour = tourList.get(0);
-            basePrice = firstTour.getPricePerPerson();
-            dateNumber = firstTour.getDateNumber();
+            tvTitle.setText(tourList.getTile());
+            tvLocationFrom.setText(tourList.getLocationFrom());
+            tvLocationTo.setText(" - " + tourList.getLocationTo());
+            tvTourTime.setText(tourList.getTourTime());
 
-            tvTitle.setText(firstTour.getTile());
-            tvLocationFrom.setText(firstTour.getLocationFrom());
-            tvLocationTo.setText(" - " + firstTour.getLocationTo());
-            tvTourTime.setText(firstTour.getTourTime());
+            tvDescription.setText(tourList.getDescription());
 
-            tvDescription.setText(firstTour.getDescription());
-
-            tvPricePerPerson.setText(String.format("$%.2f/person", firstTour.getPricePerPerson()));
-            tvVoteScore.setText(String.format("%d*", firstTour.getVoteScore()));
-            tvVoteNumber.setText(String.format("(%d)", firstTour.getVotedNumber()));
-            tvContactNumber.setText(firstTour.getContactNumber());
+            tvPricePerPerson.setText(String.format("$%.0f", tourList.getPricePerPerson()));
+            tvVoteScore.setText(String.format("%d*", tourList.getVoteScore()));
+            tvVoteNumber.setText(String.format("(%d)", tourList.getVotedNumber()));
+//            tvContactNumber.setText(tourList.getContactNumber());
             priceTour.setText("0");
 
 
@@ -106,6 +120,14 @@ public class TourBooking extends AppCompatActivity {
 
 
         txtCount.setText(Integer.toString(mCount));
+
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TourBooking.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         addCount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,15 +195,25 @@ public class TourBooking extends AppCompatActivity {
     private void createOrder() {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+            String startDateStr = tvStartDate.getText().toString();
+            String endDateStr = tvEndDate.getText().toString();
+
+            if (startDateStr.isEmpty() || endDateStr.isEmpty()) {
+                Toast.makeText(this, "Please select a date!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+
             Date startDate = sdf.parse(tvStartDate.getText().toString());
             Date endDate = sdf.parse(tvEndDate.getText().toString());
             Date orderDate = new Date();
 
             Order order = new Order();
-            order.setTourId(firstTour.getId());
+            order.setTourId(tourList.getId());
             order.setUserId(userId);
             order.setNumberOfPerson(mCount);
-//            order.setDepartureDay((int) (startDate.getTime() / (1000 * 60 * 60 * 24)));
+            order.setDepartureDay(startDate);
             order.setTotalFee(basePrice * mCount);
             order.setStatusId(1);
             order.setOrderDate(orderDate);
