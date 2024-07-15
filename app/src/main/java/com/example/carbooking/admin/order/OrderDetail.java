@@ -1,9 +1,11 @@
 package com.example.carbooking.admin.order;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -62,7 +64,14 @@ public class OrderDetail extends AppCompatActivity {
         TextView departDayy = findViewById(R.id.admin_detail_DepartureDay);
         TextView endDay = findViewById(R.id.admin_detail_EndDay);
         departDayy.setText(String.valueOf(departDay));
-
+        ImageView imageView = findViewById(R.id.admin_img_tour_detail);
+        String imageUriString = "";
+        if(tour.getImage()!=null){
+            imageUriString = tour.getImage();
+        }
+        if(!imageUriString.isEmpty()){
+            imageView.setImageURI(Uri.parse(imageUriString));
+        }
         Button back = findViewById(R.id.btn_backtolistorder);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
