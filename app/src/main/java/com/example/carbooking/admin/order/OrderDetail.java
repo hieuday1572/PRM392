@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.carbooking.Entity.Order;
 import com.example.carbooking.Entity.Tour;
 import com.example.carbooking.R;
@@ -65,13 +66,10 @@ public class OrderDetail extends AppCompatActivity {
         TextView endDay = findViewById(R.id.admin_detail_EndDay);
         departDayy.setText(String.valueOf(departDay));
         ImageView imageView = findViewById(R.id.admin_img_tour_detail);
-        String imageUriString = "";
-        if(tour.getImage()!=null){
-            imageUriString = tour.getImage();
-        }
-        if(!imageUriString.isEmpty()){
-            imageView.setImageURI(Uri.parse(imageUriString));
-        }
+        Glide.with(this)
+                .load(tour.getImage())
+                .error(R.drawable.placeholder)
+                .into(imageView);
         Button back = findViewById(R.id.btn_backtolistorder);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
