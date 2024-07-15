@@ -35,11 +35,12 @@ android {
 dependencies {
     implementation("androidx.room:room-runtime:2.4.3")
     implementation(libs.firebase.auth)
+    implementation(libs.gridlayout)
     annotationProcessor("androidx.room:room-compiler:2.4.3")
     androidTestImplementation("androidx.room:room-testing:2.4.3")
     implementation ("com.squareup.picasso:picasso:2.8")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
-
+    implementation ("androidx.cardview:cardview:1.0.0")
 
 
 

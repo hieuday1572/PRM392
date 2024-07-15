@@ -50,7 +50,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/img_tour"
+                android:id="@+id/img_tour_order"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:layout_column="0"

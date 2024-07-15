@@ -54,8 +54,9 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Or
         if(tour.getImage()!=null){
             imageUriString = tour.getImage();
         }
-        assert imageUriString != null;
-        holder.imgTour.setImageURI(Uri.parse(imageUriString));
+        if(!imageUriString.isEmpty()){
+            holder.imgTour.setImageURI(Uri.parse(imageUriString));
+        }
 
         holder.btnOrderDetail.setOnClickListener(view -> {
             Intent intent = new Intent(context, OrderDetail.class);

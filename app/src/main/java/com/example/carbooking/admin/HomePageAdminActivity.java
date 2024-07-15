@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -34,7 +35,10 @@ public class HomePageAdminActivity extends AppCompatActivity {
     ImageButton buttonDrawerToggle;
     NavigationView navigationView;
     SharedPreferences preferences;
-
+    private CardView cardManageTours;
+    private CardView cardManageAddTours;
+    private CardView cardManageUser;
+    private CardView cardManagerOrder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,6 +115,40 @@ public class HomePageAdminActivity extends AppCompatActivity {
                 return false;
             }
         });
+        cardManageTours = findViewById(R.id.cardManageToursList);
+        cardManageTours.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePageAdminActivity.this, ListTourActivity.class);
+                startActivity(intent);
+            }
+        });
+        cardManageAddTours = findViewById(R.id.cardManageAddTours);
+        cardManageAddTours.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePageAdminActivity.this, AddTourActivity.class);
+                startActivity(intent);
+            }
+        });
+        cardManagerOrder = findViewById(R.id.cardManageOrder);
+        cardManagerOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePageAdminActivity.this, OrderManagement.class);
+                startActivity(intent);
+            }
+        });
+        cardManageUser = findViewById(R.id.cardManageUsers);
+        cardManageUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePageAdminActivity.this, UserManagementActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.drawerLayoutAdmin), (v, insets) -> {
