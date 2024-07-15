@@ -19,6 +19,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
 import com.example.carbooking.Entity.Order;
 import com.example.carbooking.Entity.Tour;
 import com.example.carbooking.Entity.User;
@@ -94,10 +95,13 @@ public class TourBooking extends AppCompatActivity {
         btnHome = findViewById(R.id.btn_home);
 
         if (tourList != null) {
-            if(tourList.getImage()!=null){
-                imageUriString = tourList.getImage();
-            }
-            imgTour.setImageURI(Uri.parse(imageUriString));
+
+
+            Glide.with(this)
+                    .load(tourList.getImage())
+                    .error(R.drawable.placeholder)
+                    .into(imgTour);
+
             basePrice = tourList.getPricePerPerson();
             dateNumber = tourList.getDateNumber();
 

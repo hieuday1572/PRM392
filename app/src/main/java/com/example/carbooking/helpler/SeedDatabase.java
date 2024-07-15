@@ -84,8 +84,8 @@ public class SeedDatabase {
                 tour.setTile(titles[i % titles.length]);
                 tour.setLocationFrom("Ha Noi");
                 tour.setLocationTo(locations[i % locations.length]);
-                tour.setTourTime("2024-07-15");
-                tour.setDateNumber(ThreadLocalRandom.current().nextInt(5, 29 + 1));
+                tour.setTourTime("5 ngày 4 đêm");
+                tour.setDateNumber(5);
                 tour.setTourSchdule("2024-07-15 — 2024-07-22");
                 tour.setPricePerPerson(prices[i % prices.length]);
                 tour.setContactNumber("0123456789");
