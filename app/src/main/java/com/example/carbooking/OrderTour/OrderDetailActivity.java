@@ -1,22 +1,21 @@
 package com.example.carbooking.OrderTour;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.carbooking.Entity.Order;
 import com.example.carbooking.R;
 import com.example.carbooking.repository.OrderRepository;
 import com.example.carbooking.repository.TourRepository;
-
-import org.w3c.dom.Text;
 
 import java.util.Date;
 
@@ -36,8 +35,6 @@ public class OrderDetailActivity extends AppCompatActivity {
         Button btnVote = findViewById(R.id.btn_vote);
 
 
-
-
         Intent intent = getIntent();
         int orderId = intent.getIntExtra("orderId", -1);
         int tourIdd = intent.getIntExtra("tourId", -1);
@@ -48,7 +45,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         int numPer = intent.getIntExtra("numPer", 1);
         Date orderDay = (Date) intent.getSerializableExtra("orderDay");
         int departDay = intent.getIntExtra("departDay", 1);
-
+        String image = intent.getStringExtra("image");
         // Xử lý lấy thông tin chi tiết của order từ orderId
         orderRepository = new OrderRepository(this);
         order = orderRepository.getOrder(orderId);
@@ -68,7 +65,22 @@ public class OrderDetailActivity extends AppCompatActivity {
         orderDayy.setText(String.valueOf(orderDay));
         TextView departDayy = findViewById(R.id.textView_DeparDay);
         departDayy.setText(String.valueOf(departDay));
-
+        ImageView imageView = findViewById(R.id.img_tour_detail);
+        String imageUriString = "";
+        if(image!=null){
+            imageUriString = image;
+        }
+        if(!imageUriString.isEmpty()){
+            imageView.setImageURI(Uri.parse(imageUriString));
+        }
+        Button back = findViewById(R.id.btn_backtolistorder);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OrderDetailActivity.this, ListOrder.class);
+                startActivity(intent);
+            }
+        });
         btnVote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

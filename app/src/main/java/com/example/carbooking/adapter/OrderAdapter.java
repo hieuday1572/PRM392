@@ -2,6 +2,7 @@ package com.example.carbooking.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         holder.nameTour.setText("" + tour.getTile());
         holder.statusTour.setText("Status: " + (order.getStatusId() == 1 ? "Completed" : "Pending"));
         holder.priceTour.setText("Price: " + order.getTotalFee());
-
+        String imageUriString = "";
+        if(tour.getImage()!=null){
+            imageUriString = tour.getImage();
+        }
+        if(!imageUriString.isEmpty()){
+            holder.imgTour.setImageURI(Uri.parse(imageUriString));
+        }
 
         holder.btnHistoryDetail.setOnClickListener(view -> {
             Intent intent = new Intent(context, OrderDetailActivity.class);
@@ -66,6 +73,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             intent.putExtra("numPer", order.getNumberOfPerson());
             intent.putExtra("orderDay", order.getOrderDate());
             intent.putExtra("departDay", order.getDepartureDay());
+            intent.putExtra("image", tour.getImage());
             context.startActivity(intent);
         });
     }
@@ -85,7 +93,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             nameTour = itemView.findViewById(R.id.name_tour);
             statusTour = itemView.findViewById(R.id.status_tour);
             priceTour = itemView.findViewById(R.id.price_tour);
-            imgTour = itemView.findViewById(R.id.img_tour);
+            imgTour = itemView.findViewById(R.id.img_tour_order);
             btnHistoryDetail = itemView.findViewById(R.id.btnHistoryDetail);
         }
 

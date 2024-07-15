@@ -3,8 +3,11 @@ package com.example.carbooking.OrderTour;// ListOrder.java
 import static com.example.carbooking.R.layout.activity_tour_histories;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +17,7 @@ import com.example.carbooking.Entity.Order;
 import com.example.carbooking.R;
 import com.example.carbooking.adapter.OrderAdapter;
 import com.example.carbooking.repository.OrderRepository;
+import com.example.carbooking.user.HomeActivity;
 
 import java.util.List;
 
@@ -39,5 +43,14 @@ public class ListOrder extends AppCompatActivity {
 
         orderAdapter = new OrderAdapter(this, orderList);
         recyclerView.setAdapter(orderAdapter);
+
+        Button back = findViewById(R.id.btn_backtohome);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListOrder.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
