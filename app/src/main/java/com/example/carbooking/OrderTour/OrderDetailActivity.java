@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.carbooking.Entity.Order;
 import com.example.carbooking.R;
 import com.example.carbooking.repository.OrderRepository;
@@ -66,13 +67,10 @@ public class OrderDetailActivity extends AppCompatActivity {
         TextView departDayy = findViewById(R.id.textView_DeparDay);
         departDayy.setText(String.valueOf(departDay));
         ImageView imageView = findViewById(R.id.img_tour_detail);
-        String imageUriString = "";
-        if(image!=null){
-            imageUriString = image;
-        }
-        if(!imageUriString.isEmpty()){
-            imageView.setImageURI(Uri.parse(imageUriString));
-        }
+        Glide.with(this)
+                .load(image)
+                .error(R.drawable.placeholder)
+                .into(imageView);
         Button back = findViewById(R.id.btn_backtolistorder);
         back.setOnClickListener(new View.OnClickListener() {
             @Override

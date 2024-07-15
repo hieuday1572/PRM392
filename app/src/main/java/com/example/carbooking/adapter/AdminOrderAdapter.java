@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.carbooking.Entity.Order;
 import com.example.carbooking.Entity.Tour;
 import com.example.carbooking.OrderTour.OrderDetailActivity;
@@ -50,13 +51,10 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Or
         holder.nameTour.setText("Tour: " + tour.getTile());
         holder.statusTour.setText("Status: " + (order.getStatusId() == 1 ? "Completed" : "Pending"));
         holder.priceTour.setText("Price: " + order.getTotalFee());
-        String imageUriString = "";
-        if(tour.getImage()!=null){
-            imageUriString = tour.getImage();
-        }
-        if(!imageUriString.isEmpty()){
-            holder.imgTour.setImageURI(Uri.parse(imageUriString));
-        }
+        Glide.with(context)
+                .load(tour.getImage())
+                .error(R.drawable.placeholder)
+                .into(holder.imgTour);
 
         holder.btnOrderDetail.setOnClickListener(view -> {
             Intent intent = new Intent(context, OrderDetail.class);
