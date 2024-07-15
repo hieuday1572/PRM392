@@ -96,6 +96,14 @@
             android:name=".OrderTour.ListOrder"
             android:exported="false">
         </activity>
+        <activity
+            android:name=".user.HomeActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".user.TourDetailActivity"
+            android:exported="false">
+        </activity>
     </application>
 
 

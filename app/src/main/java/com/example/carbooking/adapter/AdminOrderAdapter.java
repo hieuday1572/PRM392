@@ -17,6 +17,7 @@ import com.example.carbooking.Entity.Order;
 import com.example.carbooking.Entity.Tour;
 import com.example.carbooking.OrderTour.OrderDetailActivity;
 import com.example.carbooking.R;
+import com.example.carbooking.admin.order.OrderDetail;
 import com.example.carbooking.repository.TourRepository;
 
 import java.util.List;
@@ -57,7 +58,7 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Or
         holder.imgTour.setImageURI(Uri.parse(imageUriString));
 
         holder.btnOrderDetail.setOnClickListener(view -> {
-            Intent intent = new Intent(context, OrderDetailActivity.class);
+            Intent intent = new Intent(context, OrderDetail.class);
             intent.putExtra("orderId", order.getId());
             intent.putExtra("tourId", order.getTourId());
             intent.putExtra("fee", order.getTotalFee());
