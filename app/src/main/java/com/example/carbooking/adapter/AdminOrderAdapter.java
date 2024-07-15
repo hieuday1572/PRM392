@@ -21,6 +21,7 @@ import com.example.carbooking.R;
 import com.example.carbooking.admin.order.OrderDetail;
 import com.example.carbooking.repository.TourRepository;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.OrderViewHolder> {
@@ -56,6 +57,12 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Or
                 .error(R.drawable.placeholder)
                 .into(holder.imgTour);
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String departureDayString = sdf.format(order.getDepartureDay());
+        String endDayString = sdf.format(order.getEndDate());
+        String orderDay = sdf.format(order.getOrderDate());
+
+
         holder.btnOrderDetail.setOnClickListener(view -> {
             Intent intent = new Intent(context, OrderDetail.class);
             intent.putExtra("orderId", order.getId());
@@ -64,8 +71,9 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Or
             intent.putExtra("statusId", order.getStatusId());
             intent.putExtra("userId", order.getUserId());
             intent.putExtra("numPer", order.getNumberOfPerson());
-            intent.putExtra("orderDay", order.getOrderDate());
-            intent.putExtra("departDay", order.getDepartureDay());
+            intent.putExtra("orderDay",orderDay);
+            intent.putExtra("departDay", departureDayString);
+            intent.putExtra("endDay", endDayString);
             context.startActivity(intent);
         });
     }

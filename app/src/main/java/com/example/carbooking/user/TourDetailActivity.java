@@ -6,12 +6,14 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.carbooking.Entity.Tour;
 import com.example.carbooking.R;
+import com.example.carbooking.TourBooking;
 import com.example.carbooking.databinding.ActivityTourDetailBinding;
 import com.example.carbooking.helpler.FormatUtils;
 import com.example.carbooking.repository.CategoryRepository;
@@ -22,12 +24,28 @@ public class TourDetailActivity extends AppCompatActivity {
 
     private ActivityTourDetailBinding binding;
 
+    Button btnBooking;
+    public static final String KEY_TOUR_ID = "tour_id";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityTourDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         populateData();
+
+        Tour tour = (Tour) getIntent().getSerializableExtra(KEY_TOUR);
+        if (tour == null) return;
+
+        btnBooking = findViewById(R.id.btn_booking);
+        btnBooking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TourDetailActivity.this, TourBooking.class);
+                intent.putExtra(KEY_TOUR_ID, tour.getId()); // Truyền tour ID
+                startActivity(intent);
+            }
+        });
     }
 
     @SuppressLint("SetTextI18n")

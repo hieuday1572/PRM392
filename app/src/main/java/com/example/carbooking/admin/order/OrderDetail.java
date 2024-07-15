@@ -13,11 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.carbooking.Entity.Order;
 import com.example.carbooking.Entity.Tour;
+import com.example.carbooking.Entity.User;
 import com.example.carbooking.R;
 import com.example.carbooking.admin.user.UserDetailsActivity;
 import com.example.carbooking.admin.user.UserManagementActivity;
 import com.example.carbooking.repository.OrderRepository;
 import com.example.carbooking.repository.TourRepository;
+import com.example.carbooking.repository.UserRepository;
 
 import java.util.Date;
 
@@ -26,6 +28,7 @@ public class OrderDetail extends AppCompatActivity {
     private OrderRepository orderRepository;
     private Order order;
     private TourRepository tourRepository;
+    private UserRepository userRepository;
     private int tourId;
 
     @Override
@@ -34,6 +37,7 @@ public class OrderDetail extends AppCompatActivity {
         setContentView(R.layout.admin_order_detail);
 
         tourRepository = new TourRepository(this);
+        userRepository = new UserRepository(this);
 
         Intent intent = getIntent();
         int orderId = intent.getIntExtra("orderId", -1);
@@ -42,13 +46,15 @@ public class OrderDetail extends AppCompatActivity {
         int statusId = intent.getIntExtra("statusId", 1);
         int userId = intent.getIntExtra("userId", 1);
         int numPer = intent.getIntExtra("numPer", 1);
-        Date orderDay = (Date) intent.getSerializableExtra("orderDay");
-        int departDay = intent.getIntExtra("departDay", 1);
+        String orderDay = intent.getStringExtra("orderDay");
+        String departDay = intent.getStringExtra("departDay");
+        String endDay = intent.getStringExtra("endDay");
         Tour tour = tourRepository.getTour(tourId);
         // Xử lý lấy thông tin chi tiết của order từ orderId
         orderRepository = new OrderRepository(this);
         order = orderRepository.getOrder(orderId);
 
+        User user = userRepository.getUserById(userId);
 
         TextView tourName = findViewById(R.id.admin_name_detail);
         tourName.setText(tour.getTile());
@@ -57,14 +63,18 @@ public class OrderDetail extends AppCompatActivity {
         TextView status = findViewById(R.id.admin_detail_Status);
         status.setText("Status: " + (statusId == 1 ? "Completed" : "Pending"));
         TextView userName = findViewById(R.id.admin_detail_UserName);
-        userName.setText(String.valueOf(userId));
+        userName.setText(user.getUserName());
         TextView numPerr = findViewById(R.id.admin_detail_NumPer);
         numPerr.setText(String.valueOf(numPer));
         TextView orderDayy = findViewById(R.id.admin_detail_OrderDay);
-        orderDayy.setText(String.valueOf(orderDay));
+        orderDayy.setText(orderDay);
         TextView departDayy = findViewById(R.id.admin_detail_DepartureDay);
-        TextView endDay = findViewById(R.id.admin_detail_EndDay);
-        departDayy.setText(String.valueOf(departDay));
+        TextView tv_endDay = findViewById(R.id.admin_detail_EndDay);
+        tv_endDay.setText(endDay);
+        departDayy.setText(departDay);
+
+
+
         ImageView imageView = findViewById(R.id.admin_img_tour_detail);
         Glide.with(this)
                 .load(tour.getImage())
