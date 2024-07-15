@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.carbooking.EditUser;
 import com.example.carbooking.Entity.User;
 import com.example.carbooking.LoginPage;
+import com.example.carbooking.OrderTour.ListOrder;
 import com.example.carbooking.R;
 import com.example.carbooking.databinding.ActivityHomeBinding;
 import com.example.carbooking.databinding.HeaderHomeNavigationBinding;
@@ -98,11 +99,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             preferences.edit().clear().apply();
             startActivity(new Intent(this, LoginPage.class));
             finish();
+        } else if (menuItem.getItemId() == R.id.action_history) {
+            Intent intent = new Intent(this, ListOrder.class);
+            startActivity(intent);
         }
 
         binding.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

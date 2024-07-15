@@ -12,29 +12,13 @@
             android:icon="@drawable/ic_home"
             android:title="Home" />
         <item
-            android:id="@+id/action_favorite"
-            android:icon="@drawable/icon_favorite"
-            android:title="Favorite" />
-        <item
-            android:id="@+id/action_report"
-            android:icon="@drawable/icon_report"
-            android:title="Report" />
-        <item
             android:id="@+id/action_history"
             android:icon="@drawable/icon_history"
             android:title="History" />
-        <item
-            android:id="@+id/action_profit"
-            android:icon="@drawable/icon_money"
-            android:title="Profit" />
     </group>
     <group
         android:id="@+id/group2"
         android:checkableBehavior="single">
-        <item
-            android:id="@+id/action_settings"
-            android:icon="@drawable/ic_settings"
-            android:title="Settings" />
         <item
             app:iconTint="#FF0000"
             android:id="@+id/action_logout"
