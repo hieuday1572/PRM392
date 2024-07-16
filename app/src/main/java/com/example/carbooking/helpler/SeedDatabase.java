@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.carbooking.Entity.Category;
 import com.example.carbooking.Entity.Order;
 import com.example.carbooking.Entity.Role;
+import com.example.carbooking.Entity.Status;
 import com.example.carbooking.Entity.Tour;
 import com.example.carbooking.Entity.User;
 import com.example.carbooking.Entity.Vehicle;
@@ -51,6 +52,14 @@ public class SeedDatabase {
             user.setRole_id(2);
             user.setLocked(false);
             userRepository.createUser(user);
+        }
+
+        if(statusRepository.getAllStatus().size() == 0){
+            Status status = new Status();
+            status.setId(1);
+            status.setStatusName("Completed");
+            status.setStatusDesc("Completed");
+            statusRepository.createStatus(status);
         }
         if (categoryRepository.getAllCategory().isEmpty()) {
             Category domestic = new Category("Domestic");
