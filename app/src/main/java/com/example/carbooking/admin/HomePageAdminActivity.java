@@ -39,6 +39,8 @@ public class HomePageAdminActivity extends AppCompatActivity {
     private CardView cardManageAddTours;
     private CardView cardManageUser;
     private CardView cardManagerOrder;
+    private CardView cardManagerLogout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,7 +96,7 @@ public class HomePageAdminActivity extends AppCompatActivity {
                     Toast.makeText(HomePageAdminActivity.this, "Edit clicked", Toast.LENGTH_SHORT).show();
                 } else if (itemId == R.id.navRemoveTour) {
                     Toast.makeText(HomePageAdminActivity.this, "Remove clicked", Toast.LENGTH_SHORT).show();
-                }  else if (itemId == R.id.navReport) {
+                } else if (itemId == R.id.navReport) {
                     Toast.makeText(HomePageAdminActivity.this, "Order Management clicked", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(HomePageAdminActivity.this, OrderManagement.class);
                     startActivity(intent);
@@ -148,8 +150,14 @@ public class HomePageAdminActivity extends AppCompatActivity {
             }
         });
 
-
-
+        cardManagerLogout = findViewById(R.id.logOut);
+        cardManagerLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePageAdminActivity.this, LoginPage.class);
+                startActivity(intent);
+            }
+        });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.drawerLayoutAdmin), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

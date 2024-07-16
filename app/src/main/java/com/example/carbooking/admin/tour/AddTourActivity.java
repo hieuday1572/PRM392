@@ -72,6 +72,7 @@ public class AddTourActivity extends AppCompatActivity {
         saveImageToStorage = new SaveImageToStorage(this);
 
         Button btnSave = findViewById(R.id.btn_addTour);
+        Button btnback = findViewById(R.id.btn_addTour_back);
         edtTitle = findViewById(R.id.edt_title_tour);
         edtLocationFrom = findViewById(R.id.edt_location_from);
         edtLocationTo = findViewById(R.id.edt_location_to);
@@ -247,6 +248,13 @@ public class AddTourActivity extends AppCompatActivity {
                 Intent iGallrey = new Intent(Intent.ACTION_PICK);
                 iGallrey.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(iGallrey, GALLERY_REQ_CODE);
+            }
+        });
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddTourActivity.this, HomePageAdminActivity.class);
+                startActivity(intent);
             }
         });
     }

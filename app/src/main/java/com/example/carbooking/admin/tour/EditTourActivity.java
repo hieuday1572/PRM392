@@ -49,7 +49,7 @@ public class EditTourActivity extends AppCompatActivity {
             edtContactNumberEdit, edtDescriptionEdit;
     private RadioButton radioActive, radioBan;
     String status = "";
-    private Button btnEditTour;
+    private Button btnEditTour, btnBack;
     private SaveImageToStorage saveImageToStorage;
 
     private Spinner spinnerCategoryEdit, spinnerVehicleEdit;
@@ -216,6 +216,14 @@ public class EditTourActivity extends AppCompatActivity {
                 Intent iGallrey = new Intent(Intent.ACTION_PICK);
                 iGallrey.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(iGallrey, GALLERY_REQ_CODE);
+            }
+        });
+        btnBack = findViewById(R.id.btn_edit_tour_back);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditTourActivity.this,ListTourActivity.class);
+                startActivity(intent);
             }
         });
     }

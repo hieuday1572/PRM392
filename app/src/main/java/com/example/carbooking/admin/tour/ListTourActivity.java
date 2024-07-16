@@ -2,6 +2,8 @@ package com.example.carbooking.admin.tour;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -15,12 +17,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.carbooking.Entity.Tour;
 import com.example.carbooking.R;
 import com.example.carbooking.adapter.TourListAdapter;
+import com.example.carbooking.admin.HomePageAdminActivity;
 import com.example.carbooking.repository.TourRepository;
 
 import java.util.List;
 
 public class ListTourActivity extends AppCompatActivity {
     private TourRepository tourRepository = null;
+    private Button back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +56,9 @@ public class ListTourActivity extends AppCompatActivity {
                 Tour tourBan = tourList.get(position);
                 boolean banTour = !tourBan.isAvaliable();
                 int id = tourBan.getId();
-                tourBan = new Tour(id,tourBan.getTile(),tourBan.getLocationFrom(),tourBan.getLocationTo(),tourBan.getTourTime(),tourBan.getDateNumber(),
-                        tourBan.getDescription(),tourBan.getTourSchdule(),tourBan.getPricePerPerson(),tourBan.getVehicle(),tourBan.getCategoryId(),
-                        tourBan.getVotedNumber(),tourBan.getVoteScore(),banTour,tourBan.getContactNumber(),tourBan.getImage());
+                tourBan = new Tour(id, tourBan.getTile(), tourBan.getLocationFrom(), tourBan.getLocationTo(), tourBan.getTourTime(), tourBan.getDateNumber(),
+                        tourBan.getDescription(), tourBan.getTourSchdule(), tourBan.getPricePerPerson(), tourBan.getVehicle(), tourBan.getCategoryId(),
+                        tourBan.getVotedNumber(), tourBan.getVoteScore(), banTour, tourBan.getContactNumber(), tourBan.getImage());
                 tourRepository.updateTour(tourBan);
                 Toast.makeText(ListTourActivity.this, "Remove success", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ListTourActivity.this, ListTourActivity.class);
@@ -64,6 +69,13 @@ public class ListTourActivity extends AppCompatActivity {
         TourListAdapter tourListAdapter = new TourListAdapter(tourList, this, onItemClickListener);
         recyclerView.setAdapter(tourListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        back = findViewById(R.id.admin_list_tour_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListTourActivity.this, HomePageAdminActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

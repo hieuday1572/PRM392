@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.carbooking.Entity.User;
 import com.example.carbooking.helpler.SaveImageToStorage;
 import com.example.carbooking.repository.UserRepository;
+import com.example.carbooking.user.HomeActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class EditUser extends AppCompatActivity {
@@ -63,10 +64,9 @@ public class EditUser extends AppCompatActivity {
         }
         String imageUriString = user.getAvatar();
         assert imageUriString != null;
-        if(imageUriString.isEmpty()){
+        if (imageUriString.isEmpty()) {
             image.setImageResource(R.drawable.ic_user);
-        }
-        else {
+        } else {
             image.setImageURI(Uri.parse(imageUriString));
         }
         selectImage.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +90,8 @@ public class EditUser extends AppCompatActivity {
                 user.setAvatar(imgPath);
                 repo.updateUser(user);
                 Toast.makeText(EditUser.this, "Edit Profile Successfully", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(EditUser.this, EditUser.class);
+                startActivity(intent);
             }
         });
 
@@ -97,17 +99,17 @@ public class EditUser extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-//                Intent intent = new Intent(EditUser.this, LoginPage.class);
-//                startActivity(intent);
+                Intent intent = new Intent(EditUser.this, HomeActivity.class);
+                startActivity(intent);
             }
         });
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
-        if(resultCode == RESULT_OK){
-            if(requestCode == GALLERY_REQ_CODE){
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == GALLERY_REQ_CODE) {
                 image.setImageURI(data.getData());
                 System.out.println("data: " + data.getData());
             }
